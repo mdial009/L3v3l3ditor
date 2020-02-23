@@ -6,6 +6,6 @@ using UnityEngine;
 [Serializable]
 public class SignResponse
 {
-    public string localId;
-    public string idToken;
+    public string localId;// specifically identitfies a user
+    public string idToken;// token is generated with each sign in.
 }

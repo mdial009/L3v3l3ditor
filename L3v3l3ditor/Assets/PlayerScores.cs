@@ -19,7 +19,7 @@ public class PlayerScores : MonoBehaviour
 
     User user = new User();
 
-    private string databaseURL = "https://level-editor-b91ba.firebaseio.com/users"; 
+    private string databaseURL = "https://level-editor-b91ba.firebaseio.com/users"; // database URL is put into a varialble ot readability.
     private string AuthKey = "AIzaSyDzyCxYLT2Epm028KLMgu8ALUFJN4uqC5g";
     
     public static fsSerializer serializer = new fsSerializer();
@@ -56,7 +56,7 @@ public class PlayerScores : MonoBehaviour
         scoreText.text = "Score: " + user.userScore;
     }
 
-    private void PostToDatabase(bool emptyScore = false)
+    private void PostToDatabase(bool emptyScore = false)// Posts the user in the datatbase with an empty score.
     {
         User user = new User();
 
@@ -77,14 +77,14 @@ public class PlayerScores : MonoBehaviour
             });
     }
 
-    public void SignUpUserButton()
+    public void SignUpUserButton()// runs when sign up button is pressed.
     {
         SignUpUser(emailText.text, usernameText.text, passwordText.text);
     }
     
-    public void SignInUserButton()
+    public void SignInUserButton()// runs when sign in button is pressed.
     {
-        SignInUser(emailText.text, passwordText.text);
+        SignInUser(emailText.text, passwordText.text);// only need email and password to sign in.
     }
     
     private void SignUpUser(string email, string username, string password)
@@ -93,18 +93,18 @@ public class PlayerScores : MonoBehaviour
         RestClient.Post<SignResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + AuthKey, userData).Then(
             response =>
             {
-                idToken = response.idToken;
-                localId = response.localId;
+                idToken = response.idToken;// token is generated with each sign in.
+                localId = response.localId;// specifically identitfies a user
                 playerName = username;
                 PostToDatabase(true);
                 
-            }).Catch(error =>
+            }).Catch(error => // Executes if request fails.
         {
             Debug.Log(error);
         });
     }
     
-    private void SignInUser(string email, string password)
+    private void SignInUser(string email, string password)// This function will check if the user credentials are correct, throws error if false
     {
         string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
         RestClient.Post<SignResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + AuthKey, userData).Then(
