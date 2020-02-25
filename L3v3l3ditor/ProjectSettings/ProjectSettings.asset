@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 18
-  productGUID: 00000000000000000000000000000000
+  productGUID: bef8bfc6a1205b241aa187b166466b28
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -598,7 +598,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: ef15b269-ce4b-4a06-b226-a661da912aa0
   framebufferDepthMemorylessMode: 0
-  projectName: TBS Framework (1)
+  projectName: New Unity Project (2)
   organizationId: momodino
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
