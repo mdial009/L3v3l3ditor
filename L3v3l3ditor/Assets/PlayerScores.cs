@@ -38,7 +38,7 @@ public class PlayerScores : MonoBehaviour
     private void Start()
     {
         playerScore = random.Next(0, 101);
-        scoreText.text = "Score: " + playerScore;
+        //scoreText.text = "Score: " + playerScore;
     }
 
     public void OnSubmit()
@@ -53,7 +53,7 @@ public class PlayerScores : MonoBehaviour
 
     private void UpdateScore()
     {
-        scoreText.text = "Score: " + user.userScore;
+        //scoreText.text = "Score: " + user.userScore;
     }
 
     private void PostToDatabase(bool emptyScore = false)// Posts the user in the datatbase with an empty score.
