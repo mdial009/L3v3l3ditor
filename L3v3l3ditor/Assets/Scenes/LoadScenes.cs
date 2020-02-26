@@ -14,8 +14,14 @@ public class LoadScenes : MonoBehaviour
     public void GoToLogin(){
         SceneManager.LoadScene(2);
     }
-    public void GoToGame(){
+    public void GoToGridMaker(){
         SceneManager.LoadScene(3);
+    }
+    public void GoToGame(){
+        SceneManager.LoadScene(4);
+    }
+    public void GoToLevelMaker(){
+        SceneManager.LoadScene(5);
     }
     // Start is called before the first frame update
     void Start()

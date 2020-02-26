@@ -228,9 +228,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Login
-
-'
+  m_Text: ' Login Page '
 --- !u!222 &124640166
 CanvasRenderer:
   m_ObjectHideFlags: 0
