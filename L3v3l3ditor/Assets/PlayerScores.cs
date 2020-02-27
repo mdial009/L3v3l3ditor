@@ -5,67 +5,36 @@ using Proyecto26;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerScores : MonoBehaviour
 {
-    public Text scoreText;
-    public InputField getScoreText;
-
     public InputField emailText;
     public InputField usernameText;
     public InputField passwordText;
-    
-    private System.Random random = new System.Random(); 
-
     User user = new User();
 
     private string databaseURL = "https://level-editor-b91ba.firebaseio.com/users"; // database URL is put into a varialble ot readability.
     private string AuthKey = "AIzaSyDzyCxYLT2Epm028KLMgu8ALUFJN4uqC5g";
     
     public static fsSerializer serializer = new fsSerializer();
-    
-    
+      
     public static int playerScore;
     public static string playerName;
+    public static string passWord;
 
     private string idToken;
     
     public static string localId;
 
     private string getLocalId;
-    
 
-    private void Start()
-    {
-        playerScore = random.Next(0, 101);
-        //scoreText.text = "Score: " + playerScore;
-    }
-
-    public void OnSubmit()
-    {
-        PostToDatabase();
-    }
-    
-    public void OnGetScore()
-    {
-        GetLocalId();
-    }
-
-    private void UpdateScore()
-    {
-        //scoreText.text = "Score: " + user.userScore;
-    }
-
-    private void PostToDatabase(bool emptyScore = false)// Posts the user in the datatbase with an empty score.
+    private void PostToDatabase()// Posts the user in the datatbase.
     {
         User user = new User();
-
-        if (emptyScore)
-        {
-            user.userScore = 0;
-        }
-        
-        RestClient.Put(databaseURL + "/" + localId + ".json?auth=" + idToken, user);
+ 
+        RestClient.Put(databaseURL + "/" + localId + passWord + ".json?auth=" + idToken, user);
     }
 
     private void RetrieveFromDatabase()
@@ -73,7 +42,6 @@ public class PlayerScores : MonoBehaviour
         RestClient.Get<User>(databaseURL + "/" + getLocalId + ".json?auth=" + idToken).Then(response =>
             {
                 user = response;
-                UpdateScore();
             });
     }
 
@@ -96,7 +64,8 @@ public class PlayerScores : MonoBehaviour
                 idToken = response.idToken;// token is generated with each sign in.
                 localId = response.localId;// specifically identitfies a user
                 playerName = username;
-                PostToDatabase(true);
+                passWord = password; 
+                PostToDatabase();
                 
             }).Catch(error => // Executes if request fails.
         {
@@ -126,11 +95,12 @@ public class PlayerScores : MonoBehaviour
             playerName = response.userName;
         });
     }
+
     
     private void GetLocalId(){
         RestClient.Get(databaseURL + ".json?auth=" + idToken).Then(response =>
         {
-            var username = getScoreText.text;
+            var username = usernameText.text;
             
             fsData userData = fsJsonParser.Parse(response.Text);
             Dictionary<string, User> users = null;
