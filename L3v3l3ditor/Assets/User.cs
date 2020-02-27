@@ -7,13 +7,13 @@ using UnityEngine;
 public class User
 {
     public string userName;
-    public int userScore;
     public string localId;
+    public string password; 
     
     public User()
     {
         userName = PlayerScores.playerName;
-        userScore = PlayerScores.playerScore;
+        password = PlayerScores.passWord; 
         localId = PlayerScores.localId;
     }
 }
