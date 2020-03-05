@@ -23,6 +23,9 @@ public class LoadScenes : MonoBehaviour
     public void GoToLevelMaker(){
         SceneManager.LoadScene(5);
     }
+    public void GoToTest(){
+        SceneManager.LoadScene(6);
+    }
     // Start is called before the first frame update
     void Start()
     {
