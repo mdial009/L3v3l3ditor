@@ -94,6 +94,9 @@ public class PlayerScores : MonoBehaviour
         RestClient.Get<User>(databaseURL + "/" + localId + ".json?auth=" + idToken).Then(response =>
         {
             playerName = response.userName;
+            Debug.Log(JsonUtility.ToJson(response));
+        }).Catch(error => {
+            Debug.Log(error);
         });
     }
 
