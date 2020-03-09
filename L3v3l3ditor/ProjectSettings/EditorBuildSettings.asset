@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 078e8a42f846b6243b375c1d0886c25f
+  - enabled: 1
+    path: Assets/Scenes/gridmaker/gridmaker.unity
+    guid: d0f81e4ed3c3b3a4ab761c241ae466ee
+  - enabled: 1
     path: Assets/Scenes/mainmenu/mainmenu.unity
     guid: bb6e3dbecbef0e44cb0878192b7a8702
   - enabled: 1
@@ -14,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/loginmenu/loginmenu.unity
     guid: 3582b9d5d4ce70741a9d594b725eb523
-  - enabled: 1
-    path: Assets/Scenes/gridmaker/gridmaker.unity
-    guid: d0f81e4ed3c3b3a4ab761c241ae466ee
   - enabled: 1
     path: Assets/Scenes/playscreen/playscreen.unity
     guid: ed7d8e7afb4ff9b4fb2fec2108a50e21
