@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928157540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: -2, y: 10, z: -3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -328,8 +328,10 @@ MonoBehaviour:
   rows: 10
   cols: 10
   tileSize: 1
-  SquarePrefab: {fileID: 6193566407713006884, guid: ab4047f8a5c232545a72ff9afdfd2c58,
+  SquarePrefab: {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240,
     type: 3}
+  cameraScrollSpeed: 15
+  cameraScrollEdge: 0.01
 --- !u!4 &1678140097
 Transform:
   m_ObjectHideFlags: 0
