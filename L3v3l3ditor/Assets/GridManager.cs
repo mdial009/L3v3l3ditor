@@ -13,13 +13,20 @@ public class GridManager : MonoBehaviour
     private float tileSize = 1;// Manage the spacing between items.
     [SerializeField]
     public GameObject SquarePrefab;
+    
     GameObject cellGrid;
+    //GameObject camera;
+
+    public float cameraScrollSpeed = 15f;
+    public float cameraScrollEdge = 0.01f;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         GenerateGrid();
     }
@@ -47,6 +54,8 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+
     // Update is called once per frame
     void Update()
     {
