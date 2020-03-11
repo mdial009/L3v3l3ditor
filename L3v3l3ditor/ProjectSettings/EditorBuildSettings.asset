@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/playscreen/playscreen.unity
     guid: ed7d8e7afb4ff9b4fb2fec2108a50e21
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/levelmaker/levelmaker.unity
     guid: 4285ec224100de04eb56aea47deeb58f
   - enabled: 1
