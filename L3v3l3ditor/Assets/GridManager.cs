@@ -6,9 +6,9 @@ using TbsFramework.Cells;
 public class GridManager : MonoBehaviour
 {
     [SerializeField]//SerializeField allows us to change the amount of rows and cols in unity.
-    private int rows = 3;
+    private int rows = 2;
     [SerializeField]
-    private int cols = 3;
+    private int cols = 2;
     [SerializeField]
     private float tileSize = 1;// Manage the spacing between items.
     [SerializeField]
@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
 
 
         GenerateGrid();
-        BaseStructure();
+        //BaseStructure();
     }
     //GenerateGrid();  
 
@@ -59,7 +59,7 @@ public class GridManager : MonoBehaviour
                 //newRoom.name = (x > y) ? "x" + x : "y" + y;
                 GameObject square = (GameObject)Instantiate(SquarePrefab, transform);// Takes Gameobject referenceTile and fills each row and col with the game object.
                 var squareSize = square.GetComponent<Renderer>().bounds.size;
-                square.transform.position = new Vector3(x * squareSize.x + 1, y * squareSize.y + 1, 0);
+                square.transform.position = new Vector3(x * squareSize.x, y * squareSize.y, 0);
                 //square.GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
                 square.GetComponent<Cell>().OffsetCoord = new Vector2(x, y);
                 square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -75,15 +75,12 @@ public class GridManager : MonoBehaviour
         //gridInfo.Center = gridInfo.Dimensions / 2;
         gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
         //gridCen = gridDim / 2;
-        camera.transform.position = (new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z)) / 2;
+        camera.transform.position = (new Vector3(cellDimensions.x * (rows + 0.25f), cellDimensions.y * (cols - 0.5f), cellDimensions.z - 7.5f)) / 2;
         camera.transform.position -= new Vector3(0, 0, (gridDim.x > gridDim.y ? gridDim.x : gridDim.y) * Mathf.Sqrt(3) / 2);
     }
 
 
-    private void BaseStructure()
-    {
-        var camera = Camera.main;
-    }
+
 
 
     // Update is called once per frame
