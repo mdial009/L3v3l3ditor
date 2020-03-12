@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
 
 
         GenerateGrid();
+        BaseStructure();
     }
     //GenerateGrid();  
 
@@ -36,8 +37,19 @@ public class GridManager : MonoBehaviour
 
     private void GenerateGrid()
     {
+
+        var camera = Camera.main;
+
+        if (camera == null)
+        {
+            var cameraObject = new GameObject("Main Camera");
+            cameraObject.tag = "MainCamera";
+            cameraObject.AddComponent<Camera>();
+            camera = cameraObject.GetComponent<Camera>();
+        }
         //Vector3 size = new Vector3(5, 5, 1);    //This is the size of our cube-grid. (5x5x1)    
         cellGrid = new GameObject("CellGrid");
+        var ret = new List<Cell>();
         for (int x = 0; x < rows; x++)
         {
             for (int y = 0; y < cols; y++)
@@ -48,11 +60,27 @@ public class GridManager : MonoBehaviour
                 var squareSize = square.GetComponent<Renderer>().bounds.size;
                 square.transform.position = new Vector3(x * squareSize.x + 1, y * squareSize.y + 1, 0);
                 //square.GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+                square.GetComponent<Cell>().OffsetCoord = new Vector2(x, y);
                 square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 square.GetComponent<Cell>().MovementCost = 1;
                 square.transform.SetParent(transform);
             }
         }
+        var cellDimensions = SquarePrefab.GetComponent<Cell>().GetCellDimensions();
+
+        var gridInfo = new GridInfo();
+        gridInfo.Cells = ret;
+        gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
+        gridInfo.Center = gridInfo.Dimensions / 2;
+
+        camera.transform.position = gridInfo.Center;
+        camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.y ? gridInfo.Dimensions.x : gridInfo.Dimensions.y) * Mathf.Sqrt(3) / 2);
+    }
+
+
+    private void BaseStructure()
+    {
+        var camera = Camera.main;
     }
 
 
