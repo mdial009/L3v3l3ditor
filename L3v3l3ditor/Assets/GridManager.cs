@@ -39,7 +39,8 @@ public class GridManager : MonoBehaviour
     {
 
         var camera = Camera.main;
-
+        Vector3 gridDim;
+        //var gridCen; //= new vector3();
         if (camera == null)
         {
             var cameraObject = new GameObject("Main Camera");
@@ -68,13 +69,14 @@ public class GridManager : MonoBehaviour
         }
         var cellDimensions = SquarePrefab.GetComponent<Cell>().GetCellDimensions();
 
-        var gridInfo = new GridInfo();
-        gridInfo.Cells = ret;
-        gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
-        gridInfo.Center = gridInfo.Dimensions / 2;
-
-        camera.transform.position = gridInfo.Center;
-        camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.y ? gridInfo.Dimensions.x : gridInfo.Dimensions.y) * Mathf.Sqrt(3) / 2);
+        //var gridInfo = new GridInfo();
+        //gridInfo.Cells = ret;
+        //gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
+        //gridInfo.Center = gridInfo.Dimensions / 2;
+        gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
+        //gridCen = gridDim / 2;
+        camera.transform.position = (new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z)) / 2;
+        camera.transform.position -= new Vector3(0, 0, (gridDim.x > gridDim.y ? gridDim.x : gridDim.y) * Mathf.Sqrt(3) / 2);
     }
 
 
