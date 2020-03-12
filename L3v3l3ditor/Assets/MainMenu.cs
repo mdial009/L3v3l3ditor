@@ -18,8 +18,20 @@ public class MainMenu : MonoBehaviour
         Instantiate(loading);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void QuitGame (){
+    public void QuitGame ()
+    {
         Debug.Log ("QUIT!");
         Application.Quit();
     }
+    public void GridMaker()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+    }
+    public void LoginPage()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
