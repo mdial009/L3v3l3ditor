@@ -5,30 +5,60 @@ namespace TbsFramework.Test
 {
     class SampleSquare : Square
     {
+
+        private Renderer squareRenderer;
+        private Renderer outlineRenderer;
+
+        private Vector3 dimensions = new Vector3(2.2f, 1.9f, 1.1f);
+
+        public void Awake()
+        {
+            squareRenderer = GetComponent<Renderer>();
+
+            var outline = transform.Find("Outline");
+            outlineRenderer = outline.GetComponent<Renderer>();
+
+            SetColor(squareRenderer, Color.white);
+            SetColor(outlineRenderer, Color.black);
+        }
+
+
         public override Vector3 GetCellDimensions()
         {
-            return GetComponent<Renderer>().bounds.size;
+            return dimensions;
+            //return GetComponent<Renderer>().bounds.size;
         }
 
         public override void MarkAsHighlighted()
         {
-            GetComponent<Renderer>().material.color = new Color(0.75f, 0.75f, 0.75f);
+            SetColor(outlineRenderer, Color.blue);
+            //GetComponent<Renderer>().material.color = new Color(0.75f, 0.75f, 0.75f);
         }
 
         public override void MarkAsPath()
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            SetColor(squareRenderer, Color.green);
+            //GetComponent<Renderer>().material.color = Color.green;
         }
 
         public override void MarkAsReachable()
         {
-            GetComponent<Renderer>().material.color = Color.yellow;
+            SetColor(squareRenderer, Color.yellow);
+            //GetComponent<Renderer>().material.color = Color.yellow;
         }
 
         public override void UnMark()
         {
-            GetComponent<Renderer>().material.color = Color.white;
+            SetColor(squareRenderer, Color.white);
+            SetColor(outlineRenderer, Color.black);
+            //GetComponent<Renderer>().material.color = Color.white;
         }
+        
+        private void SetColor(Renderer renderer, Color color)
+        {
+            renderer.material.color = color;
+        }
+
     }
 }
 

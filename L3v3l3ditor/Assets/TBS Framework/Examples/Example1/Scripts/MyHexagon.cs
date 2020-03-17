@@ -32,7 +32,7 @@ namespace TbsFramework.Example1
         }
         public override void MarkAsPath()
         {
-            SetColor(hexagonRenderer, Color.green); ;
+            SetColor(hexagonRenderer, Color.green); 
         }
         public override void MarkAsHighlighted()
         {

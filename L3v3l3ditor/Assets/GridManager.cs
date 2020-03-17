@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
             camera = cameraObject.GetComponent<Camera>();
         }
         //Vector3 size = new Vector3(5, 5, 1);    //This is the size of our cube-grid. (5x5x1)    
-        cellGrid = new GameObject("CellGrid");
+        var gridGameObject = GameObject.Find("CellGrid");
         var ret = new List<Cell>();
         for (int x = 0; x < rows; x++)
         {
