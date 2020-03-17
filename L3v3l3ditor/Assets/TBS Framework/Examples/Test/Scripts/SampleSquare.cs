@@ -9,7 +9,7 @@ namespace TbsFramework.Test
         private Renderer squareRenderer;
         private Renderer outlineRenderer;
 
-        private Vector3 dimensions = new Vector3(2.2f, 1.9f, 1.1f);
+        //private Vector3 dimensions = new Vector3(2, 2, 2);
 
         public void Awake()
         {
@@ -25,8 +25,8 @@ namespace TbsFramework.Test
 
         public override Vector3 GetCellDimensions()
         {
-            return dimensions;
-            //return GetComponent<Renderer>().bounds.size;
+            //return dimensions;
+            return GetComponent<Renderer>().bounds.size;
         }
 
         public override void MarkAsHighlighted()

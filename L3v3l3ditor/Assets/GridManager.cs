@@ -19,6 +19,10 @@ public class GridManager : MonoBehaviour
 
     public float cameraScrollSpeed = 15f;
     public float cameraScrollEdge = 0.01f;
+    
+    GameObject directionalLight;
+
+    bool gridGameObjectPresent;
 
 
 
@@ -50,6 +54,8 @@ public class GridManager : MonoBehaviour
         }
         //Vector3 size = new Vector3(5, 5, 1);    //This is the size of our cube-grid. (5x5x1)    
         var gridGameObject = GameObject.Find("CellGrid");
+        gridGameObjectPresent = gridGameObject != null;
+
         var ret = new List<Cell>();
         for (int x = 0; x < rows; x++)
         {
@@ -58,11 +64,12 @@ public class GridManager : MonoBehaviour
                 //GameObject newRoom = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 //newRoom.name = (x > y) ? "x" + x : "y" + y;
                 GameObject square = (GameObject)Instantiate(SquarePrefab, transform);// Takes Gameobject referenceTile and fills each row and col with the game object.
-                var squareSize = square.GetComponent<Renderer>().bounds.size;
+                var squareSize = square.GetComponent<Cell>().GetCellDimensions();
+                //var squareSize = square.GetComponent<Renderer>().bounds.size;
                 square.transform.position = new Vector3(x * squareSize.x, y * squareSize.y, 0);
                 //square.GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
                 square.GetComponent<Cell>().OffsetCoord = new Vector2(x, y);
-                square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                //square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 square.GetComponent<Cell>().MovementCost = 1;
                 square.transform.SetParent(transform);
             }
@@ -75,13 +82,23 @@ public class GridManager : MonoBehaviour
         //gridInfo.Center = gridInfo.Dimensions / 2;
         gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
         //gridCen = gridDim / 2;
-        camera.transform.position = (new Vector3(cellDimensions.x * (rows + 0.25f), cellDimensions.y * (cols - 0.5f), cellDimensions.z - 7.5f)) / 2;
+        camera.transform.position = (new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z)) / 2;
         camera.transform.position -= new Vector3(0, 0, (gridDim.x > gridDim.y ? gridDim.x : gridDim.y) * Mathf.Sqrt(3) / 2);
+       
+        var rotationVector = new Vector3(90f, 0f, 0f);
+
+        camera.transform.parent = cellGrid.transform;
+        cellGrid.transform.Rotate(rotationVector);
+        //players.transform.Rotate(rotationVector);
+        //units.transform.Rotate(rotationVector);
+        directionalLight.transform.Rotate(rotationVector);
+
+        camera.transform.parent = null;
+        camera.transform.SetAsFirstSibling();
     }
 
 
-
-
+   
 
     // Update is called once per frame
     void Update()
