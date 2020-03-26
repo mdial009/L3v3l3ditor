@@ -9,7 +9,7 @@ namespace TbsFramework.Test
         private Renderer squareRenderer;
         private Renderer outlineRenderer;
 
-        //private Vector3 dimensions = new Vector3(2, 2, 2);
+        private Vector3 dimensions = new Vector3(2.2f, 1.9f, 1.1f);
 
         public void Awake()
         {

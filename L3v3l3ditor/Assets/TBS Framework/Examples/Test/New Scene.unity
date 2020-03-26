@@ -223,6 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166069266}
   - component: {fileID: 166069267}
+  - component: {fileID: 166069268}
   m_Layer: 0
   m_Name: GuiController
   m_TagString: Untagged
@@ -257,6 +258,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CellGrid: {fileID: 0}
+--- !u!114 &166069268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166069265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d024f993e23e7b4c9dde77f379fc4ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CellGrid: {fileID: 0}
+  NextTurnButton: {fileID: 0}
+  UnitImage: {fileID: 0}
+  InfoText: {fileID: 0}
+  StatsText: {fileID: 0}
 --- !u!1 &928157540
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678140097}
   - component: {fileID: 1678140096}
+  - component: {fileID: 1678140098}
   m_Layer: 0
   m_Name: GridHolder
   m_TagString: Untagged
@@ -364,13 +383,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678140095}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ae8d31f5eaba9845bc36efbe3e29c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  cols: 10
+  rows: 3
+  cols: 3
   tileSize: 0
   SquarePrefab: {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240,
     type: 3}
@@ -390,3 +409,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678140098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678140095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e03f4b551e4a6c44b5c5def2b10423a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows: 2
+  cols: 2
+  gridSpacing: 1
+  SquarePrefab: {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240,
+    type: 3}
+  itemsToPickFrom:
+  - {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240, type: 3}
+  origin: {x: 0, y: 0, z: 0}
+  cameraScrollSpeed: 15
+  cameraScrollEdge: 0.01
