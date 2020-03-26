@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "32819973781",
+    "firebase_url": "https://l3v3l-3ditor.firebaseio.com",
+    "project_id": "l3v3l-3ditor",
+    "storage_bucket": "l3v3l-3ditor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32819973781:android:99b880cf31f010d6b7159c",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.L3v3l3ditor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32819973781-tmjfcstros88ahn2a64ifd7tg35qg7qs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf46I3Csi_OpOd6imDNc9l99Ikum2MaUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32819973781-tmjfcstros88ahn2a64ifd7tg35qg7qs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "32819973781-118tdja1m2jorhi1umiebqv1soehvonq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.DefaultCompany.L3v3l3ditor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
