@@ -8,7 +8,7 @@ public class LoadScenes : MonoBehaviour
     public void GotoMainMenu(){
         SceneManager.LoadScene(0);
     }
-    public void GoToRegister(){
+    public void GoToTest(){
         SceneManager.LoadScene(1);
     }
     public void GoToLogin(){
@@ -23,7 +23,7 @@ public class LoadScenes : MonoBehaviour
     public void GoToLevelMaker(){
         SceneManager.LoadScene(5);
     }
-    public void GoToTest(){
+    public void GoToTest3(){
         SceneManager.LoadScene(6);
     }
 

@@ -23,7 +23,7 @@ namespace TbsFramework.Test.Scripts
 
 
         GameObject cellGrid;
-        //GameObject camera;
+        GameObject camera;
 
         public float cameraScrollSpeed = 15f;
         public float cameraScrollEdge = 0.01f;
@@ -42,7 +42,6 @@ namespace TbsFramework.Test.Scripts
         //GenerateGrid();  
 
 
-
         //private void GenerateGrid()
         public void GenerateGrid()
         {
@@ -56,7 +55,9 @@ namespace TbsFramework.Test.Scripts
                     //var squareSize = square.GetComponent<Cell>().GetCellDimensions();
                     //var squareSize = square.GetComponent<Renderer>().bounds.size;
                     Vector3 spawnPosition = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
-                    PickAndSpawn(spawnPosition, Quaternion.identity);
+                    GameObject square = PickAndSpawn(spawnPosition, Quaternion.identity);
+                    //var square = PickAndSpawn();
+                    ret.Add(square.GetComponent<Cell>());
                     //var square = PickAndSpawn();
 
                     //square.transform.position = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
@@ -64,38 +65,47 @@ namespace TbsFramework.Test.Scripts
                     //square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                     //square.GetComponent<Cell>().MovementCost = 1;
                     //ret.Add(square.GetComponent<Cell>());
-                    
-                    //square.transform.SetParent(transform);
+
+                    square.transform.SetParent(transform);
                     //square.transform.parent = CellsParent;
                 }
             }
-            //var cellDimensions = SquarePrefab.GetComponent<Cell>().GetCellDimensions();
+            var cellDimensions = SquarePrefab.GetComponent<Cell>().GetCellDimensions();
 
-            //var gridInfo = new GridInfo();
-            //gridInfo.Cells = ret;
-            //gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
-            //gridInfo.Center = gridInfo.Dimensions / 2;
+            var gridInfo = new GridInfo();
+            gridInfo.Cells = ret;
+            gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y, cellDimensions.z * (cols - 1));
+            gridInfo.Center = gridInfo.Dimensions / 2;
             //gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
             //gridCen = gridDim / 2;
-            //camera.transform.position = origin;
-            //camera.transform.position -= new Vector3(0, 0, (gridDim.x > gridDim.y ? gridDim.x : gridDim.y) * Mathf.Sqrt(3) / 2);
 
-            //var rotationVector = new Vector3(90f, 0f, 0f);
+            var camera = Camera.main;
+            var cameraObject = new GameObject("Main Camera");
+            cameraObject.tag = "MainCamera";
+            cameraObject.AddComponent<Camera>();
+            camera = cameraObject.GetComponent<Camera>();
+            
+            camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + 3, gridInfo.Center.z);
+            //camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.z ? gridInfo.Dimensions.x : gridInfo.Dimensions.z) * Mathf.Sqrt(3) / 2);
 
+            var rotationVector = new Vector3(90f, 0f, 0f);
+
+            camera.transform.Rotate(rotationVector);
             //camera.transform.parent = cellGrid.transform;
             //cellGrid.transform.Rotate(rotationVector);
             //players.transform.Rotate(rotationVector);
             //units.transform.Rotate(rotationVector);
             //directionalLight.transform.Rotate(rotationVector);
 
-            //camera.transform.parent = null;
-            //camera.transform.SetAsFirstSibling();
+            camera.transform.parent = null;
+            camera.transform.SetAsFirstSibling();
         }
 
-        void PickAndSpawn(Vector3 positionToSpawn, Quaternion rotationToSpawn)
+        public GameObject PickAndSpawn(Vector3 positionToSpawn, Quaternion rotationToSpawn)
         {
             int randomIndex = Random.Range(0, itemsToPickFrom.Length);
             GameObject square = Instantiate(itemsToPickFrom[randomIndex], positionToSpawn, rotationToSpawn);
+            return square;
             
   
 
