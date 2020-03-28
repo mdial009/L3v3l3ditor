@@ -1,8 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
+using System;
 using TbsFramework.Cells;
 using UnityEditor;
+using TbsFramework.Gui;
+using TbsFramework.Grid;
+using TbsFramework.Players;
+using TbsFramework.Units;
+using TbsFramework.Grid.UnitGenerators;
+//using TbsFramework
+//using TbsFramework.EditorUtils.GridGenerators;
+
 
 namespace TbsFramework.Test.Scripts
 {
@@ -13,7 +24,7 @@ namespace TbsFramework.Test.Scripts
         [SerializeField]
         public int cols = 2;
         [SerializeField]
-        public float gridSpacing = 1f;// Manage the spacing between items.
+        public float gridSpacing = 1.5f;// Manage the spacing between items.
         public GameObject SquarePrefab;
         
         [SerializeField]
@@ -21,95 +32,79 @@ namespace TbsFramework.Test.Scripts
         
         public Vector3 origin = Vector3.zero;
 
+        public int nHumanPlayer = 2;
+
 
         GameObject cellGrid;
+        GameObject units;
+        GameObject players;
         GameObject camera;
+        GameObject guiController;
+
 
         public float cameraScrollSpeed = 15f;
         public float cameraScrollEdge = 0.01f;
 
+        public int generatorIndex;
+        public int mapTypeIndex;
 
+        public static List<Type> generators;
+        public static string[] generatorNames;
 
 
         // Start is called before the first frame update
         void Start()
         {
 
+            GenerateStructure();
+            //GenerateGrid();
 
-            GenerateGrid();
             //BaseStructure();
         }
-        //GenerateGrid();  
-
-
-        //private void GenerateGrid()
-        public void GenerateGrid()
+        
+        
+        
+        
+        
+        public void GenerateStructure()
         {
-            var ret = new List<Cell>();
-            for (int x = 0; x < rows; x++)
+            cellGrid = new GameObject("CellGrid");
+            players = new GameObject("Players");
+            units = new GameObject("Units");
+
+            for (int i = 0; i < nHumanPlayer; i++)
             {
-                for (int z = 0; z < cols; z++)
-                {
-                    //var square = PrefabUtility.InstantiatePrefab(SquarePrefab) as GameObject;
-                    //GameObject square = (GameObject)Instantiate(SquarePrefab, transform);// Takes Gameobject referenceTile and fills each row and col with the game object.
-                    //var squareSize = square.GetComponent<Cell>().GetCellDimensions();
-                    //var squareSize = square.GetComponent<Renderer>().bounds.size;
-                    Vector3 spawnPosition = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
-                    GameObject square = PickAndSpawn(spawnPosition, Quaternion.identity);
-                    //var square = PickAndSpawn();
-                    ret.Add(square.GetComponent<Cell>());
-                    //var square = PickAndSpawn();
-
-                    //square.transform.position = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
-                    //square.GetComponent<Cell>().OffsetCoord = new Vector2(x, z);
-                    //square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                    //square.GetComponent<Cell>().MovementCost = 1;
-                    //ret.Add(square.GetComponent<Cell>());
-
-                    square.transform.SetParent(transform);
-                    //square.transform.parent = CellsParent;
-                }
+                var player = new GameObject(string.Format("Player_{0}", players.transform.childCount));
+                player.AddComponent<HumanPlayer>();
+                player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
+                player.transform.parent = players.transform;
             }
-            var cellDimensions = SquarePrefab.GetComponent<Cell>().GetCellDimensions();
 
-            var gridInfo = new GridInfo();
-            gridInfo.Cells = ret;
-            gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y, cellDimensions.z * (cols - 1));
-            gridInfo.Center = gridInfo.Dimensions / 2;
-            //gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
-            //gridCen = gridDim / 2;
-
-            var camera = Camera.main;
-            var cameraObject = new GameObject("Main Camera");
-            cameraObject.tag = "MainCamera";
-            cameraObject.AddComponent<Camera>();
-            camera = cameraObject.GetComponent<Camera>();
             
-            camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + 3, gridInfo.Center.z);
-            //camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.z ? gridInfo.Dimensions.x : gridInfo.Dimensions.z) * Mathf.Sqrt(3) / 2);
 
-            var rotationVector = new Vector3(90f, 0f, 0f);
+            Type selectedGenerator = generators[generatorIndex];
 
-            camera.transform.Rotate(rotationVector);
-            //camera.transform.parent = cellGrid.transform;
-            //cellGrid.transform.Rotate(rotationVector);
-            //players.transform.Rotate(rotationVector);
-            //units.transform.Rotate(rotationVector);
-            //directionalLight.transform.Rotate(rotationVector);
+            var cellGridScript = cellGrid.AddComponent<CellGrid>();
+            ICellGridGenerator generator = (ICellGridGenerator)Activator.CreateInstance(selectedGenerator);
+            generator.CellsParent = cellGrid.transform;
 
-            camera.transform.parent = null;
-            camera.transform.SetAsFirstSibling();
-        }
 
-        public GameObject PickAndSpawn(Vector3 positionToSpawn, Quaternion rotationToSpawn)
-        {
-            int randomIndex = Random.Range(0, itemsToPickFrom.Length);
-            GameObject square = Instantiate(itemsToPickFrom[randomIndex], positionToSpawn, rotationToSpawn);
-            return square;
-            
-  
+            cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+
+            var unitGenerator = cellGrid.AddComponent<CustomUnitGenerator>();
+            unitGenerator.UnitsParent = units.transform;
+            unitGenerator.CellsParent = cellGrid.transform;
+
+            var guiControllerScript = guiController.AddComponent<GUIController>();
+            guiControllerScript.CellGrid = cellGridScript;
+
 
         }
+        
+        
+        
+        
+        
 
 
         // Update is called once per frame

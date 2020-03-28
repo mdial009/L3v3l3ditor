@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TbsFramework.Test.Scripts
 {
-    public abstract class ICellGrid
+    public abstract class ICellGridGenerator
     {
         public Transform CellsParent;
         public abstract GridInfo GenerateGrid();
