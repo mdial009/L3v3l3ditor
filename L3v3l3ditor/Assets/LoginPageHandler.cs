@@ -20,7 +20,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LoginHandler : MonoBehaviour {
+public class LoginPageHandler : MonoBehaviour {
 
   protected Firebase.Auth.FirebaseAuth auth;
   private Firebase.Auth.FirebaseAuth otherAuth;
@@ -40,12 +40,6 @@ public class LoginHandler : MonoBehaviour {
   const int kMaxLogSize = 16382;
   Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
 
-    // IEnumerator ChangeMenu()
-    //{   
-     //   yield return new WaitUntil(HandleCreateUserAsync);
-       // MainMenu.SetActive(true);
-    // }
-
   // When the app starts, check to make sure that we have
   // the required dependencies to use Firebase, and if not,
   // add them if possible.
@@ -59,9 +53,7 @@ public class LoginHandler : MonoBehaviour {
           "Could not resolve all Firebase dependencies: " + dependencyStatus);
       }
     });
-    // {
-        // StartCoroutine(ChangeMenu());
-   // }
+
   }
 
 
@@ -207,7 +199,6 @@ public class LoginHandler : MonoBehaviour {
       if (successLogin) {
         Debug.Log("asdfasdfasdfsadfasdfasdfasdfasdfasdfasdfasdf");
         MainMenu.SetActive(true);
-        RegisterMenu.SetActive(false);
       }
     }
   
