@@ -33,18 +33,9 @@ public class LoginHandler : MonoBehaviour {
   protected string password = "";
   protected string displayName = "";
   private bool fetchingToken = false;
-  public GameObject MainMenu; 
-  public GameObject RegisterMenu;
-  public bool successLogin;
 
   const int kMaxLogSize = 16382;
   Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
-
-    // IEnumerator ChangeMenu()
-    //{   
-     //   yield return new WaitUntil(HandleCreateUserAsync);
-       // MainMenu.SetActive(true);
-    // }
 
   // When the app starts, check to make sure that we have
   // the required dependencies to use Firebase, and if not,
@@ -59,11 +50,8 @@ public class LoginHandler : MonoBehaviour {
           "Could not resolve all Firebase dependencies: " + dependencyStatus);
       }
     });
-    // {
-        // StartCoroutine(ChangeMenu());
-   // }
-  }
 
+  }
 
   // Handle initialization of the necessary firebase modules:
   void InitializeFirebase() {
@@ -201,14 +189,8 @@ public class LoginHandler : MonoBehaviour {
     string newDisplayName = displayName;
     auth.CreateUserWithEmailAndPasswordAsync(email, password)
       .ContinueWith((task) => {
-        successLogin = true;
         return HandleCreateUserAsync(task, newDisplayName: newDisplayName);
-      }).Unwrap(); 
-      if (successLogin) {
-        Debug.Log("asdfasdfasdfsadfasdfasdfasdfasdfasdfasdfasdf");
-        MainMenu.SetActive(true);
-        RegisterMenu.SetActive(false);
-      }
+      }).Unwrap();
     }
   
 
@@ -254,7 +236,6 @@ public class LoginHandler : MonoBehaviour {
   void HandleSigninResult(Task<Firebase.Auth.FirebaseUser> authTask) {
     LogTaskCompletion(authTask, "Sign-in");
         // SceneManager.LoadSceneAsync("scene_02");
-        
   }
 
   public void ReloadUser() {
@@ -315,4 +296,3 @@ public class LoginHandler : MonoBehaviour {
       });
   }
 }
-
