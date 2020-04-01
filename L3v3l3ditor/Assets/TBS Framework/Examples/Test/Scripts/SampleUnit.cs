@@ -1,7 +1,7 @@
 ﻿using TbsFramework.Units;
 using UnityEngine;
 
-namespace Scenes.Test
+namespace TbsFramework.Test
 {
     public class SampleUnit : Unit
     {

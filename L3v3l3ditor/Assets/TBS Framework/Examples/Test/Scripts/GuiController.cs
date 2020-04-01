@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Scenes.Test
+namespace TbsFramework.Test
 {
     public class GuiController : MonoBehaviour
     {

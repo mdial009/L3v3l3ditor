@@ -4,26 +4,21 @@ using System.Collections.Generic;
 
 public class DropDownGridmaker : MonoBehaviour
 {
-
-    List<string> names = new List<string>() { "1", "2", "3", "4" };
+    List<string> names = new List<string>() { "1", "2", "3", "4"};
     public TMPro.TMP_Dropdown dropdown;
-
-
     // public Text selectedName; // this line of code is to have a selected text that changes with the selected text.
-
-    // public void Dropdown_IndexChanged(int index)
+    
+   // public void Dropdown_IndexChanged(int index)
     // {
-    //     selectedName.text = names[index];
+   //     selectedName.text = names[index];
     // }
 
     void Start()
     {
-        PopulateList();
-
+     PopulateList();
     }
     void PopulateList()
     {
-        dropdown.AddOptions(names);
-
+    dropdown.AddOptions(names);
     }
 }
