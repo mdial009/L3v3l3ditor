@@ -1,7 +1,7 @@
 ﻿using TbsFramework.Cells;
 using UnityEngine;
 
-namespace TbsFramework.Test
+namespace Scenes.Test
 {
     class SampleSquare : Square
     {

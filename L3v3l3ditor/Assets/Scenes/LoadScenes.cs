@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class LoadScenes : MonoBehaviour
 {
@@ -31,6 +33,16 @@ public class LoadScenes : MonoBehaviour
     {
         SceneManager.LoadScene(7);
     }
+
+
+    public void onHerkunftChoose()
+    {
+        int chosenInt = GameObject.Find("GridDimensions").GetComponent<Dropdown>().value;
+        print(chosenInt);
+        // int chosenInt = dropdown.value;
+        //Debug.Log(chosenInt);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
