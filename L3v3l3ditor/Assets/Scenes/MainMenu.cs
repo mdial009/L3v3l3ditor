@@ -18,20 +18,12 @@ public class MainMenu : MonoBehaviour
         Instantiate(loading);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void QuitGame ()
-    {
-        Debug.Log ("QUIT!");
-        Application.Quit();
+    public void QuitApplication(){
+        Debug.Log ("You have quit the game");
+        if (UnityEditor.EditorApplication.isPlaying == true) {
+        UnityEditor.EditorApplication.isPlaying = false;
+        } else {
+        Application.Quit ();
+        }
     }
-    public void GridMaker()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-    }
-    public void LoginPage()
-    {
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
 }
