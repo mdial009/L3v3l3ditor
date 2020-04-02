@@ -39,7 +39,7 @@ namespace TbsFramework.Gui
             if (Input.GetKeyDown(KeyCode.N) && !(CellGrid.CellGridState is CellGridStateAiTurn))
             {
                 CellGrid.EndTurn();//User ends his turn by pressing "n" on keyboard.
-                Debug.Log("New turn")
+                //Debug.Log("New turn");
 
             }
         }
