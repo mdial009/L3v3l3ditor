@@ -9,13 +9,17 @@ namespace TbsFramework.Gui
     {
         public CellGrid CellGrid;
 
-        void Awake()
+        //void Awake()
+        //{
+          //  CellGrid.LevelLoading += onLevelLoading;
+            //CellGrid.LevelLoadingDone += onLevelLoadingDone;
+        //}
+
+        void Start()
         {
             CellGrid.LevelLoading += onLevelLoading;
             CellGrid.LevelLoadingDone += onLevelLoadingDone;
         }
-
-        
             
            
 
@@ -35,6 +39,8 @@ namespace TbsFramework.Gui
             if (Input.GetKeyDown(KeyCode.N) && !(CellGrid.CellGridState is CellGridStateAiTurn))
             {
                 CellGrid.EndTurn();//User ends his turn by pressing "n" on keyboard.
+                Debug.Log("New turn")
+
             }
         }
     }
