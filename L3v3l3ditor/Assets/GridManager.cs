@@ -16,12 +16,12 @@ namespace TbsFramework.Test.Scripts
 {
     public class GridManager : MonoBehaviour
     {
-        [SerializeField]//SerializeField allows us to change the amount of rows and cols in unity.
-        public int rows = 2;
+        //[SerializeField]//SerializeField allows us to change the amount of rows and cols in unity.
+        //static int rows;
+        //[SerializeField]
+        //static int cols = 2;
         [SerializeField]
-        public int cols = 2;
-        [SerializeField]
-        public float gridSpacing = 1.5f;// Manage the spacing between items.
+        public float gridSpacing = 1.05f;// Manage the spacing between items.
         public GameObject SquarePrefab;
         
         [SerializeField]
@@ -52,9 +52,9 @@ namespace TbsFramework.Test.Scripts
         {
             var ret = new List<Cell>();
 
-            for (int x = 0; x < rows; x++)
+            for (int x = 0; x < Dimensions.rows; x++)
             {
-                for (int z = 0; z < cols; z++)
+                for (int z = 0; z < Dimensions.cols; z++)
                 {
                     //var square = PrefabUtility.InstantiatePrefab(SquarePrefab) as GameObject;
                     //GameObject square = (GameObject)Instantiate(SquarePrefab, transform);// Takes Gameobject referenceTile and fills each row and col with the game object.
@@ -85,7 +85,7 @@ namespace TbsFramework.Test.Scripts
 
             var gridInfo = new GridInfo();
             gridInfo.Cells = ret;
-            gridInfo.Dimensions = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y, cellDimensions.z * (cols - 1));
+            gridInfo.Dimensions = new Vector3(cellDimensions.x * (Dimensions.rows - 1), cellDimensions.y, cellDimensions.z * (Dimensions.cols - 1));
             gridInfo.Center = gridInfo.Dimensions / 2;
             //gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
             //gridCen = gridDim / 2;
@@ -96,7 +96,7 @@ namespace TbsFramework.Test.Scripts
             cameraObject.AddComponent<Camera>();
             camera = cameraObject.GetComponent<Camera>();
 
-            camera.transform.position = new Vector3(gridInfo.Center.x + 1, gridInfo.Center.y + (1.5f * rows), gridInfo.Center.z + 1);
+            camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (1.5f * Dimensions.rows), gridInfo.Center.z);
             //camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.z ? gridInfo.Dimensions.x : gridInfo.Dimensions.z) * Mathf.Sqrt(3) / 2);
 
             var rotationVector = new Vector3(90f, 0f, 0f);
