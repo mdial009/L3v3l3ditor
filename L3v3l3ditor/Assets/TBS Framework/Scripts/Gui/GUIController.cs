@@ -15,6 +15,10 @@ namespace TbsFramework.Gui
             CellGrid.LevelLoadingDone += onLevelLoadingDone;
         }
 
+        
+            
+           
+
         private void onLevelLoading(object sender, EventArgs e)
         {
             Debug.Log("Level is loading");

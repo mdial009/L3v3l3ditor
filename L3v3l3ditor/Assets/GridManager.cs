@@ -33,7 +33,9 @@ namespace TbsFramework.Test.Scripts
 
 
         GameObject cellGrid;
-       
+        GameObject players;
+        GameObject units;
+        GameObject guiController;
 
 
         public float cameraScrollSpeed = 15f;
@@ -43,13 +45,47 @@ namespace TbsFramework.Test.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            //Structure();
             GenerateGrid();
+            
+
+            //Structure();
 
             //BaseStructure();
         }
 
         public void GenerateGrid()
         {
+            players = new GameObject("Players");
+            units = new GameObject("Units");
+            cellGrid = new GameObject("CellGrid");
+            
+
+            for (int i = 0; i < Dimensions.players; i++)
+            {
+                var player = new GameObject(string.Format("Player_{0}", players.transform.childCount));
+                player.AddComponent<HumanPlayer>();
+                player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
+                player.transform.parent = players.transform;
+            }
+
+
+            var cellGridScript = cellGrid.AddComponent<CellGrid>();
+
+            cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+
+
+
+            var unitGenerator = cellGrid.AddComponent<CustomUnitGenerator>();
+            unitGenerator.UnitsParent = units.transform;
+            unitGenerator.CellsParent = cellGrid.transform;
+
+            //cellGrid.AddComponent<GridManager>();
+
+
+            
+
+
             var ret = new List<Cell>();
 
             for (int x = 0; x < Dimensions.rows; x++)
@@ -74,7 +110,7 @@ namespace TbsFramework.Test.Scripts
                     square.GetComponent<Cell>().MovementCost = 1;
                     //ret.Add(square.GetComponent<Cell>());
 
-                    square.transform.SetParent(transform);
+                    square.transform.SetParent(cellGrid.transform);
                     //square.transform.parent = CellsParent;
                     
                     
@@ -99,10 +135,12 @@ namespace TbsFramework.Test.Scripts
             camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (1.5f * Dimensions.rows), gridInfo.Center.z);
             //camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.z ? gridInfo.Dimensions.x : gridInfo.Dimensions.z) * Mathf.Sqrt(3) / 2);
 
+            
+
             var rotationVector = new Vector3(90f, 0f, 0f);
 
             camera.transform.Rotate(rotationVector);
-            camera.transform.parent = cellGrid.transform;
+            //camera.transform.parent = cellGrid.transform;
             //cellGrid.transform.Rotate(rotationVector);
             //players.transform.Rotate(rotationVector);
             //units.transform.Rotate(rotationVector);
@@ -110,6 +148,14 @@ namespace TbsFramework.Test.Scripts
 
             camera.transform.parent = null;
             camera.transform.SetAsFirstSibling();
+
+
+            guiController = new GameObject("GUIController");
+
+            guiController.SetActive(true);
+            var guiControllerScript = guiController.AddComponent<GUIController>();
+            guiControllerScript.CellGrid = cellGridScript;
+
         }
 
         public GameObject PickAndSpawn(Vector3 positionToSpawn, Quaternion rotationToSpawn)
@@ -124,7 +170,42 @@ namespace TbsFramework.Test.Scripts
         }
 
 
+        public void Edit()
+        {
 
+        }
+
+        public void Structure()
+        {
+            players = new GameObject("Players");
+            units = new GameObject("Units");
+            cellGrid = new GameObject("CellGrid");
+            //guiController = new GameObject("GUIController");
+
+            for (int i = 0; i < Dimensions.players; i++)
+            {
+                var player = new GameObject(string.Format("Player_{0}", players.transform.childCount));
+                player.AddComponent<HumanPlayer>();
+                player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
+                player.transform.parent = players.transform;
+            }
+
+
+            var cellGridScript = cellGrid.AddComponent<CellGrid>();
+
+            cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+
+
+
+            var unitGenerator = cellGrid.AddComponent<CustomUnitGenerator>();
+            unitGenerator.UnitsParent = units.transform;
+            unitGenerator.CellsParent = cellGrid.transform;
+
+            cellGrid.AddComponent<GridManager>();
+
+
+
+        }
 
         // Update is called once per frame
         void Update()
