@@ -397,9 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e03f4b551e4a6c44b5c5def2b10423a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  cols: 10
-  gridSpacing: 1.5
+  gridSpacing: 1.05
   SquarePrefab: {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240,
     type: 3}
   itemsToPickFrom:
