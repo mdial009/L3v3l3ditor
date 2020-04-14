@@ -29,6 +29,8 @@ namespace TbsFramework.Test.Scripts
         
         public Vector3 origin = Vector3.zero;
 
+        //BoolWrapper unitEditModeOn = new BoolWrapper(false);
+
         //public int nHumanPlayer = 2;
 
 
@@ -36,6 +38,8 @@ namespace TbsFramework.Test.Scripts
         GameObject players;
         GameObject units;
         GameObject guiController;
+
+        GameObject unitsGameObject;
 
 
         public float cameraScrollSpeed = 15f;
@@ -168,6 +172,53 @@ namespace TbsFramework.Test.Scripts
 
 
         }
+
+        //private void PaintUnits()
+        //{
+            //GameObject UnitsParent = unitsGameObjectPresent ? GameObject.Find("Units") : unitsGameObject;
+            //if (UnitsParent == null)
+            //{
+                //return;
+            //}
+
+            //var selectedCell = GetSelectedCell();
+            //if (selectedCell == null)
+            //{
+              //  return;
+            //}
+
+            //var mapType = mapTypes[mapTypeIndex];
+            //Handles.color = Color.red;
+            //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.up, selectedCell.GetCellDimensions().y / 2);
+            //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.forward, selectedCell.GetCellDimensions().y / 2);
+            //HandleUtility.Repaint();
+            //if (Event.current.button == 0 && (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.MouseDown))
+            //{
+                //if (unitEditModeOn.value && selectedCell.IsTaken)
+             //   if (selectedCell.IsTaken)
+               // {
+                //    return;
+                //}
+
+                //Undo.SetCurrentGroupName("Unit painting");
+                //int group = Undo.GetCurrentGroup();
+
+                //Undo.RecordObject(selectedCell, "Unit painting");
+                //selectedCell.IsTaken = true;
+                //var newUnit = (PrefabUtility.InstantiatePrefab(unitPrefab.gameObject) as GameObject).GetComponent<Unit>();
+                //newUnit.PlayerNumber = playerNumber;
+                //newUnit.Cell = selectedCell;
+
+                //var offset = new Vector3(0, 0, selectedCell.GetCellDimensions().z);
+                //newUnit.transform.position = selectedCell.transform.position;
+                //newUnit.transform.parent = UnitsParent.transform;
+                //newUnit.transform.localPosition -= offset;
+                //newUnit.transform.rotation = selectedCell.transform.rotation;
+
+                //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
+            //}
+        //}
+
 
 
         public void Edit()
