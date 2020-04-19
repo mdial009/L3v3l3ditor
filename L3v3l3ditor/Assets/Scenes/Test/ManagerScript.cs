@@ -34,7 +34,8 @@ public class ManagerScript : MonoBehaviour
     private bool saveLoadPositionIn = false;
     private LevelEditor level;
 
-    
+    public static int whichObj = 0;
+
 
 
     // Start is called before the first frame update
@@ -127,41 +128,58 @@ public class ManagerScript : MonoBehaviour
     /// </summary>
     /// 
 
-    public void ChooseUnit()
+    public void ChooseP1_Unit()
     {
         user.itemOption = MouseScript.ItemList.Unit;
-        int randomIndex = Random.Range(0, itemsToPickFrom.Length);
-        GameObject unit = Instantiate(itemsToPickFrom[randomIndex]);
+        int index = 0;
+        GameObject unit = Instantiate(itemsToPickFrom[index]);
+        whichObj = 0;
+    }
+
+    public void ChooseP2_Unit()
+    {
+        user.itemOption = MouseScript.ItemList.Unit;
+        int index = 1;
+        GameObject unit = Instantiate(itemsToPickFrom[index]);
+        whichObj = 1;
+    }
+
+    public void ChooseObstacles()
+    {
+        user.itemOption = MouseScript.ItemList.Unit;
+        int index = 2;
+        GameObject unit = Instantiate(itemsToPickFrom[index]);
+        whichObj = 2;
     }
 
     //public void ChooseCylinder()
     //{
-      //  user.itemOption = MouseScript.ItemList.Cylinder; // set object to place as cylinder
-        //GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder); // create object, get new object's mesh and set mouse object's mesh to that, then destroy
-        //mouseObject.mesh = cylinder.GetComponent<MeshFilter>().mesh;
-        //Destroy(cylinder);
+    //  user.itemOption = MouseScript.ItemList.Cylinder; // set object to place as cylinder
+    //GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder); // create object, get new object's mesh and set mouse object's mesh to that, then destroy
+    //mouseObject.mesh = cylinder.GetComponent<MeshFilter>().mesh;
+    //Destroy(cylinder);
     //}
 
     //public void ChooseCube()
     //{
-      //  user.itemOption = MouseScript.ItemList.Cube; // set object to place as cube
-       // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube); // create object, get new object's mesh and set mouse object's mesh to that, then destroy
-       // mouseObject.mesh = cube.GetComponent<MeshFilter>().mesh;
-       // Destroy(cube);
+    //  user.itemOption = MouseScript.ItemList.Cube; // set object to place as cube
+    // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube); // create object, get new object's mesh and set mouse object's mesh to that, then destroy
+    // mouseObject.mesh = cube.GetComponent<MeshFilter>().mesh;
+    // Destroy(cube);
     //}
 
     //public void ChooseSphere()
     //{
-      //  user.itemOption = MouseScript.ItemList.Sphere; // set object to place as sphere
-       // GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere); // create object, get new object's mesh and set mouse object's mesh to that, then destroy
-       // mouseObject.mesh = sphere.GetComponent<MeshFilter>().mesh;
-       // Destroy(sphere);
+    //  user.itemOption = MouseScript.ItemList.Sphere; // set object to place as sphere
+    // GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere); // create object, get new object's mesh and set mouse object's mesh to that, then destroy
+    // mouseObject.mesh = sphere.GetComponent<MeshFilter>().mesh;
+    // Destroy(sphere);
     //}
 
     //public void ChoosePlayerStart()
     //{
-      //  user.itemOption = MouseScript.ItemList.Player; // set object to place as player marker
-       // mouseObject.mesh = playerMarker; // set mouse object's mesh to playerMarker (player object mesh).
+    //  user.itemOption = MouseScript.ItemList.Player; // set object to place as player marker
+    // mouseObject.mesh = playerMarker; // set mouse object's mesh to playerMarker (player object mesh).
     //}
 
 
@@ -297,7 +315,7 @@ public class ManagerScript : MonoBehaviour
                 eo.data.rot = newObj.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Unit;
             }
-            
+
         }
 
         //Clear level box

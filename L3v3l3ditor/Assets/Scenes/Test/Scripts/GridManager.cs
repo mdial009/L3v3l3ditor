@@ -23,10 +23,10 @@ namespace TbsFramework.Test.Scripts
         [SerializeField]
         public float gridSpacing = 1.05f;// Manage the spacing between items.
         public GameObject SquarePrefab;
-        
+
         [SerializeField]
         public GameObject[] itemsToPickFrom;
-        
+
         public Vector3 origin = Vector3.zero;
 
         //BoolWrapper unitEditModeOn = new BoolWrapper(false);
@@ -39,7 +39,7 @@ namespace TbsFramework.Test.Scripts
         GameObject units;
         GameObject guiController;
 
-        GameObject unitsGameObject;
+
 
 
         public float cameraScrollSpeed = 15f;
@@ -51,7 +51,7 @@ namespace TbsFramework.Test.Scripts
         {
             //Structure();
             GenerateGrid();
-            
+
 
             //Structure();
 
@@ -63,7 +63,7 @@ namespace TbsFramework.Test.Scripts
             players = new GameObject("Players");
             units = new GameObject("Units");
             cellGrid = new GameObject("CellGrid");
-            
+
 
             for (int i = 0; i < Dimensions.players; i++)
             {
@@ -87,7 +87,7 @@ namespace TbsFramework.Test.Scripts
             //cellGrid.AddComponent<GridManager>();
 
 
-            
+
 
 
             var ret = new List<Cell>();
@@ -100,8 +100,8 @@ namespace TbsFramework.Test.Scripts
                     //GameObject square = (GameObject)Instantiate(SquarePrefab, transform);// Takes Gameobject referenceTile and fills each row and col with the game object.
                     //var squareSize = square.GetComponent<Cell>().GetCellDimensions();
                     //var squareSize = square.GetComponent<Renderer>().bounds.size;
-                    
-                    
+
+
                     Vector3 spawnPosition = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
                     GameObject square = PickAndSpawn(spawnPosition, Quaternion.identity);
                     //var square = PickAndSpawn();
@@ -116,8 +116,8 @@ namespace TbsFramework.Test.Scripts
 
                     square.transform.SetParent(cellGrid.transform);
                     //square.transform.parent = CellsParent;
-                    
-                    
+
+
                 }
             }
 
@@ -130,18 +130,25 @@ namespace TbsFramework.Test.Scripts
             //gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
             //gridCen = gridDim / 2;
 
-            var camera = Camera.main;
-            var cameraObject = new GameObject("Main Camera");
-            cameraObject.tag = "MainCamera";
-            cameraObject.AddComponent<Camera>();
-            camera = cameraObject.GetComponent<Camera>();
+            //var camera = Camera.main;
+            //var cameraObject = new GameObject("Main Camera");
+            //cameraObject.tag = "MainCamera";
+            //cameraObject.AddComponent<Camera>();
+            //camera = cameraObject.GetComponent<Camera>();
 
-            camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (1.5f * Dimensions.rows), gridInfo.Center.z);
+            //camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (1.5f * Dimensions.rows), gridInfo.Center.z);
+
+            var camera = Camera.main;
+            var cameraObject = GameObject.Find("Main Camera");
+            //cameraObject.tag = "MainCamera";
+            camera = cameraObject.GetComponent<Camera>();
+            camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (3.5f * Dimensions.rows), gridInfo.Center.z);
+
             //camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.z ? gridInfo.Dimensions.x : gridInfo.Dimensions.z) * Mathf.Sqrt(3) / 2);
 
-            
 
-            var rotationVector = new Vector3(90f, 0f, 0f);
+
+            var rotationVector = new Vector3(0f, 0f, 0f);
 
             camera.transform.Rotate(rotationVector);
             //camera.transform.parent = cellGrid.transform;
@@ -166,58 +173,14 @@ namespace TbsFramework.Test.Scripts
         {
             int randomIndex = Random.Range(0, itemsToPickFrom.Length);
             GameObject square = Instantiate(itemsToPickFrom[randomIndex], positionToSpawn, rotationToSpawn);
-            
+
             return square;
 
 
 
         }
 
-        //private void PaintUnits()
-        //{
-            //GameObject UnitsParent = unitsGameObjectPresent ? GameObject.Find("Units") : unitsGameObject;
-            //if (UnitsParent == null)
-            //{
-                //return;
-            //}
 
-            //var selectedCell = GetSelectedCell();
-            //if (selectedCell == null)
-            //{
-              //  return;
-            //}
-
-            //var mapType = mapTypes[mapTypeIndex];
-            //Handles.color = Color.red;
-            //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.up, selectedCell.GetCellDimensions().y / 2);
-            //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.forward, selectedCell.GetCellDimensions().y / 2);
-            //HandleUtility.Repaint();
-            //if (Event.current.button == 0 && (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.MouseDown))
-            //{
-                //if (unitEditModeOn.value && selectedCell.IsTaken)
-             //   if (selectedCell.IsTaken)
-               // {
-                //    return;
-                //}
-
-                //Undo.SetCurrentGroupName("Unit painting");
-                //int group = Undo.GetCurrentGroup();
-
-                //Undo.RecordObject(selectedCell, "Unit painting");
-                //selectedCell.IsTaken = true;
-                //var newUnit = (PrefabUtility.InstantiatePrefab(unitPrefab.gameObject) as GameObject).GetComponent<Unit>();
-                //newUnit.PlayerNumber = playerNumber;
-                //newUnit.Cell = selectedCell;
-
-                //var offset = new Vector3(0, 0, selectedCell.GetCellDimensions().z);
-                //newUnit.transform.position = selectedCell.transform.position;
-                //newUnit.transform.parent = UnitsParent.transform;
-                //newUnit.transform.localPosition -= offset;
-                //newUnit.transform.rotation = selectedCell.transform.rotation;
-
-                //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
-            //}
-        //}
 
 
 
