@@ -345,7 +345,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1.5e-44, z: 7.812e-42, w: 1.04e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1204,7 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSpeedSlide: {fileID: 1996843926}
-  ms: {fileID: 0}
+  ms: {fileID: 1955351162}
 --- !u!1 &551922238
 GameObject:
   m_ObjectHideFlags: 0
@@ -5403,26 +5403,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1955351160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9cf42dd38eafa4abee9e556e08e82a, type: 3}
+  m_Script: {fileID: 11500000, guid: 035e9b469329b7747b5a133f177f6e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemUIAnimation: {fileID: 297723639}
-  optionUIAnimation: {fileID: 1104489338}
-  saveUIAnimation: {fileID: 1313865744}
-  loadUIAnimation: {fileID: 198826723}
-  mouseObject: {fileID: 1717584625}
-  user: {fileID: 1717584622}
-  playerMarker: {fileID: 4300000, guid: a379029f9e2e93444b6d3a6ddca2adb2, type: 3}
-  rotSlider: {fileID: 1584841366}
-  rotUI: {fileID: 1326089300}
-  levelNameSave: {fileID: 1551721933}
-  levelNameLoad: {fileID: 983875274}
-  levelMessage: {fileID: 1791983659}
-  messageAnim: {fileID: 1791983656}
+  itemsToPickFrom: []
   playerPlaced: 0
   saveLoadMenuOpen: 0
-  level:
-    editorObjects: []
+  itemUIAnimation: {fileID: 0}
+  optionUIAnimation: {fileID: 0}
+  saveUIAnimation: {fileID: 0}
+  loadUIAnimation: {fileID: 0}
+  mouseObject: {fileID: 0}
+  user: {fileID: 0}
+  rotSlider: {fileID: 0}
+  rotUI: {fileID: 0}
+  levelNameSave: {fileID: 0}
+  levelNameLoad: {fileID: 0}
 --- !u!1 &1993777025
 GameObject:
   m_ObjectHideFlags: 0
