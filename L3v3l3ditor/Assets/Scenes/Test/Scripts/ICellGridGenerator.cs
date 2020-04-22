@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using TbsFramework.Cells;
 using UnityEngine;
-
 namespace TbsFramework.Test.Scripts
 {
+
     public abstract class ICellGridGenerator
     {
         public Transform CellsParent;
