@@ -13,7 +13,7 @@ public class MouseScript : MonoBehaviour
     public enum ItemList { Unit }; // the list of items
 
     [HideInInspector] // we hide these to make them known to the rest of the project without them appearing in the Unity editor.
-    public ItemList itemOption = ItemList.Unit; // setting the cylinder object as the default object
+    public ItemList itemOption = ItemList.Unit; 
     [HideInInspector]
     public LevelManipulation manipulateOption = LevelManipulation.Create; // create is the default manipulation type.
     [HideInInspector]

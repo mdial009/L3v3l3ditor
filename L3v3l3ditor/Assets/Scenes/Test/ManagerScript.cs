@@ -3,6 +3,9 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using TbsFramework.Gui;
+using TbsFramework.Cells;
+using TbsFramework.Grid;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -35,7 +38,9 @@ public class ManagerScript : MonoBehaviour
     private LevelEditor level;
 
     public static int whichObj = 0;
-
+    GameObject guiController;
+    GameObject manager;
+    GameObject cellGrid;
 
 
     // Start is called before the first frame update
@@ -131,24 +136,24 @@ public class ManagerScript : MonoBehaviour
     public void ChooseP1_Unit()
     {
         user.itemOption = MouseScript.ItemList.Unit;
-        int index = 0;
-        GameObject unit = Instantiate(itemsToPickFrom[index]);
+        //int index = 0;
+        //GameObject unit = Instantiate(itemsToPickFrom[index]);
         whichObj = 0;
     }
 
     public void ChooseP2_Unit()
     {
         user.itemOption = MouseScript.ItemList.Unit;
-        int index = 1;
-        GameObject unit = Instantiate(itemsToPickFrom[index]);
+        //int index = 1;
+        //GameObject unit = Instantiate(itemsToPickFrom[index]);
         whichObj = 1;
     }
 
     public void ChooseObstacles()
     {
         user.itemOption = MouseScript.ItemList.Unit;
-        int index = 2;
-        GameObject unit = Instantiate(itemsToPickFrom[index]);
+        //int index = 2;
+        //GameObject unit = Instantiate(itemsToPickFrom[index]);
         whichObj = 2;
     }
 
@@ -291,6 +296,28 @@ public class ManagerScript : MonoBehaviour
             //messageAnim.Play("MessageFade", 0, 0);
             levelNameLoad.DeactivateInputField(); // remove focus from input field
         }
+    }
+
+    public void PlayLevel()
+    {
+        //cellGrid = GameObject.Find("CellGrid");
+        //cellGrid.GetComponent<CellGrid>().enabled =true;
+        guiController = GameObject.Find("GUIController");
+        guiController.GetComponent<GUIController>().enabled = true;
+
+        //guiController.GetComponent<GUIController>().enable();
+        //guiController.GetComponent<
+        //manager = GameObject.Find("Manager");
+        //var guiControllerScript = manager.AddComponent<GUIController>();
+
+    }
+
+    public void EditLevel()
+    {
+        //cellGrid = GameObject.Find("CellGrid");
+        //cellGrid.GetComponent<CellGrid>().enabled = false;
+        guiController = GameObject.Find("GUIController");
+        guiController.GetComponent<GUIController>().enabled = false;
     }
 
     // create objects based on data within level.

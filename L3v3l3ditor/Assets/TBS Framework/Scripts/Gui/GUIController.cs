@@ -9,6 +9,8 @@ namespace TbsFramework.Gui
     {
         public CellGrid CellGrid;
 
+        GameObject guiController;
+
         //void Awake()
         //{
           //  CellGrid.LevelLoading += onLevelLoading;
@@ -17,6 +19,7 @@ namespace TbsFramework.Gui
 
         void Start()
         {
+            Debug.Log("GUI Start");
             CellGrid.LevelLoading += onLevelLoading;
             CellGrid.LevelLoadingDone += onLevelLoadingDone;
         }
@@ -34,8 +37,27 @@ namespace TbsFramework.Gui
             Debug.Log("Press 'n' to end turn");
         }
 
+        public void check()
+        {
+            guiController = GameObject.Find("GUIController");
+            if (guiController.GetComponent<GUIController>().enabled = false)
+            {
+                Debug.Log("GUI Start");
+                CellGrid.LevelLoading += onLevelLoading;
+                CellGrid.LevelLoadingDone += onLevelLoadingDone;
+            }
+        }
+
         void Update()
         {
+            guiController = GameObject.Find("GUIController");
+            if(guiController.GetComponent<GUIController>().enabled = false)
+            {
+                Debug.Log("GUI Start");
+                CellGrid.LevelLoading += onLevelLoading;
+                CellGrid.LevelLoadingDone += onLevelLoadingDone;
+            }
+            
             if (Input.GetKeyDown(KeyCode.N) && !(CellGrid.CellGridState is CellGridStateAiTurn))
             {
                 CellGrid.EndTurn();//User ends his turn by pressing "n" on keyboard.

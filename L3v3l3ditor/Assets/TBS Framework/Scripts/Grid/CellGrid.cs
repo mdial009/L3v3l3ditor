@@ -78,11 +78,13 @@ namespace TbsFramework.Grid
         private void Start()
         {
             if (LevelLoading != null)
+                //Debug.Log("Loading.....");
                 LevelLoading.Invoke(this, new EventArgs());
 
             Initialize();
 
             if (LevelLoadingDone != null)
+                //Debug.Log("Done!");
                 LevelLoadingDone.Invoke(this, new EventArgs());
 
             StartGame();
@@ -90,6 +92,7 @@ namespace TbsFramework.Grid
 
         private void Initialize()
         {
+            Debug.Log("Initializing");
             Players = new List<Player>();
             for (int i = 0; i < PlayersParent.childCount; i++)
             {
