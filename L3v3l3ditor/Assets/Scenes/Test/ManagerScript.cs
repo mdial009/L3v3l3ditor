@@ -135,6 +135,7 @@ public class ManagerScript : MonoBehaviour
 
     public void ChooseP1_Unit()
     {
+        Debug.Log("P1Unit Selected");
         user.itemOption = MouseScript.ItemList.Unit;
         //int index = 0;
         //GameObject unit = Instantiate(itemsToPickFrom[index]);
@@ -143,6 +144,7 @@ public class ManagerScript : MonoBehaviour
 
     public void ChooseP2_Unit()
     {
+        Debug.Log("P2Unit Selected");
         user.itemOption = MouseScript.ItemList.Unit;
         //int index = 1;
         //GameObject unit = Instantiate(itemsToPickFrom[index]);
@@ -151,6 +153,7 @@ public class ManagerScript : MonoBehaviour
 
     public void ChooseObstacles()
     {
+        Debug.Log("Obstacle Selected");
         user.itemOption = MouseScript.ItemList.Unit;
         //int index = 2;
         //GameObject unit = Instantiate(itemsToPickFrom[index]);

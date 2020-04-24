@@ -13,9 +13,9 @@ public class MouseScript : MonoBehaviour
     public enum ItemList { Unit }; // the list of items
 
     [HideInInspector] // we hide these to make them known to the rest of the project without them appearing in the Unity editor.
-    public ItemList itemOption = ItemList.Unit; 
+    public ItemList itemOption = ItemList.Unit;
     [HideInInspector]
-    public LevelManipulation manipulateOption = LevelManipulation.Create; // create is the default manipulation type.
+    public LevelManipulation manipulateOption;// = LevelManipulation.Create; // create is the default manipulation type.
     [HideInInspector]
     public MeshRenderer mr;
     [HideInInspector]
@@ -177,7 +177,7 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Got thru");
+
         //var mapType = mapTypes[mapTypeIndex];
         //Handles.color = Color.red;
         //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.up, selectedCell.GetCellDimensions().y / 2);
@@ -194,7 +194,7 @@ public class MouseScript : MonoBehaviour
         //int group = Undo.GetCurrentGroup();
 
         //Undo.RecordObject(selectedCell, "Unit painting");
-        Debug.Log("Got thru2");
+
         selectedCell.IsTaken = true;
         int Index = 0;
         GameObject newUnit = Instantiate(itemsToPickFrom[Index]);
@@ -233,7 +233,7 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Got thru");
+
         //var mapType = mapTypes[mapTypeIndex];
         //Handles.color = Color.red;
         //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.up, selectedCell.GetCellDimensions().y / 2);
@@ -250,7 +250,7 @@ public class MouseScript : MonoBehaviour
         //int group = Undo.GetCurrentGroup();
 
         //Undo.RecordObject(selectedCell, "Unit painting");
-        Debug.Log("Got thru2");
+
         selectedCell.IsTaken = true;
 
 
@@ -285,7 +285,7 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Got thru");
+  
 
         if (selectedCell.IsTaken)
         {
@@ -296,7 +296,7 @@ public class MouseScript : MonoBehaviour
         //int group = Undo.GetCurrentGroup();
         //var cells = CellGrid.GetComponentsInChildren<Cell>();
         //Undo.RecordObject(selectedCell, "Unit painting");
-        Debug.Log("Got thru2");
+
         selectedCell.IsTaken = true;
         int Index = 2;
         GameObject obs = Instantiate(itemsToPickFrom[Index]);
