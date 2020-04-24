@@ -50,16 +50,17 @@ namespace TbsFramework.Gui
 
         void Update()
         {
-            guiController = GameObject.Find("GUIController");
-            if(guiController.GetComponent<GUIController>().enabled = false)
-            {
-                Debug.Log("GUI Start");
-                CellGrid.LevelLoading += onLevelLoading;
-                CellGrid.LevelLoadingDone += onLevelLoadingDone;
-            }
+            //guiController = GameObject.Find("GUIController");
+            //if(guiController.GetComponent<GUIController>().enabled = false)
+            //{
+             //   Debug.Log("GUI Start");
+              //  CellGrid.LevelLoading += onLevelLoading;
+               // CellGrid.LevelLoadingDone += onLevelLoadingDone;
+            //}
             
             if (Input.GetKeyDown(KeyCode.N) && !(CellGrid.CellGridState is CellGridStateAiTurn))
             {
+                Debug.Log("Next Turn");
                 CellGrid.EndTurn();//User ends his turn by pressing "n" on keyboard.
                 //Debug.Log("New turn");
 

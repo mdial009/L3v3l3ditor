@@ -46,8 +46,15 @@ public class ManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rotSlider.onValueChanged.AddListener(delegate { RotationValueChange(); }); // set up listener for rotation slider value change
+        //rotSlider.onValueChanged.AddListener(delegate { RotationValueChange(); }); // set up listener for rotation slider value change
         CreateEditor(); // create new instance of level.
+    }
+
+
+    public void ActivateGame()
+    {
+        cellGrid = GameObject.Find("CellGrid");
+        cellGrid.GetComponent<CellGrid>().Begin();
     }
 
     LevelEditor CreateEditor()
@@ -198,7 +205,7 @@ public class ManagerScript : MonoBehaviour
     {
         user.manipulateOption = MouseScript.LevelManipulation.Create; // set mode to create
         user.mr.enabled = true; // show mouse object mesh
-        rotUI.SetActive(false); // disable rotation ui
+        //rotUI.SetActive(false); // disable rotation ui
     }
 
     public void ChooseRotate()
@@ -212,7 +219,7 @@ public class ManagerScript : MonoBehaviour
     {
         user.manipulateOption = MouseScript.LevelManipulation.Destroy; // set mode to destroy
         user.mr.enabled = false; // hide mouse mesh
-        rotUI.SetActive(false); // disable rotation ui
+        //rotUI.SetActive(false); // disable rotation ui
     }
 
 

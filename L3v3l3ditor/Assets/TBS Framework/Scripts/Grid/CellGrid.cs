@@ -75,11 +75,27 @@ namespace TbsFramework.Grid
         public List<Cell> Cells { get; private set; }
         public List<Unit> Units { get; private set; }
 
-        private void Start()
+        /*private void Start()
         {
             if (LevelLoading != null)
-                //Debug.Log("Loading.....");
+                Debug.Log("Loading.....");
                 LevelLoading.Invoke(this, new EventArgs());
+
+            Initialize();
+
+            if (LevelLoadingDone != null)
+                //Debug.Log("Done!");
+                LevelLoadingDone.Invoke(this, new EventArgs());
+
+            StartGame();
+        }*/
+
+        public void Begin()
+        {
+            Debug.Log("Im at Begin");
+            if (LevelLoading != null)
+                Debug.Log("Loading.....");
+            LevelLoading.Invoke(this, new EventArgs());
 
             Initialize();
 
@@ -125,7 +141,7 @@ namespace TbsFramework.Grid
 
             Units = new List<Unit>();
             var unitGenerator = GetComponent<IUnitGenerator>();
-            if (unitGenerator != null)
+           /* if (unitGenerator != null)
             {
                 var units = unitGenerator.SpawnUnits(Cells);
                 foreach (var unit in units)
@@ -134,7 +150,7 @@ namespace TbsFramework.Grid
                 }
             }
             else
-                Debug.LogError("No IUnitGenerator script attached to cell grid");
+                Debug.LogError("No IUnitGenerator script attached to cell grid");*/
         }
 
         private void OnCellDehighlighted(object sender, EventArgs e)
