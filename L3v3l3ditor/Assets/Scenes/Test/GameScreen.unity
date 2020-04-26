@@ -3726,13 +3726,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928157540}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &944477920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,7 +4039,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!114 &1164527793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5302,10 +5302,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSpacing: 1.05
-  SquarePrefab: {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240,
+  SquarePrefab: {fileID: 6193566407713006884, guid: ab4047f8a5c232545a72ff9afdfd2c58,
     type: 3}
   itemsToPickFrom:
-  - {fileID: 2226744541121072251, guid: af6d9e9315cf96047b38b12fa9cdf240, type: 3}
+  - {fileID: 6193566407713006884, guid: ab4047f8a5c232545a72ff9afdfd2c58, type: 3}
   origin: {x: 0, y: 0, z: 0}
   cameraScrollSpeed: 15
   cameraScrollEdge: 0.01

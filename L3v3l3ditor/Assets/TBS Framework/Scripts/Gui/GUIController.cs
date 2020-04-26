@@ -40,7 +40,7 @@ namespace TbsFramework.Gui
         public void check()
         {
             guiController = GameObject.Find("GUIController");
-            if (guiController.GetComponent<GUIController>().enabled = false)
+            if (guiController.GetComponent<GUIController>().enabled == false)
             {
                 Debug.Log("GUI Start");
                 CellGrid.LevelLoading += onLevelLoading;
@@ -50,13 +50,6 @@ namespace TbsFramework.Gui
 
         void Update()
         {
-            //guiController = GameObject.Find("GUIController");
-            //if(guiController.GetComponent<GUIController>().enabled = false)
-            //{
-             //   Debug.Log("GUI Start");
-              //  CellGrid.LevelLoading += onLevelLoading;
-               // CellGrid.LevelLoadingDone += onLevelLoadingDone;
-            //}
             
             if (Input.GetKeyDown(KeyCode.N) && !(CellGrid.CellGridState is CellGridStateAiTurn))
             {

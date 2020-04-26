@@ -330,6 +330,7 @@ namespace TbsFramework.Units
         /// <param name="path">A list of cells, path from source to destination cell</param>
         public virtual void Move(Cell destinationCell, List<Cell> path)
         {
+            
             var totalMovementCost = path.Sum(h => h.MovementCost);
             MovementPoints -= totalMovementCost;
 
@@ -341,10 +342,13 @@ namespace TbsFramework.Units
 
             if (MovementAnimationSpeed > 0)
             {
+                Debug.Log("Move");
                 StartCoroutine(MovementAnimation(path));
             }
             else
             {
+                Debug.Log("Move");
+                Debug.Log(Cell.transform.position);
                 transform.position = Cell.transform.position;
             }
 
@@ -379,6 +383,7 @@ namespace TbsFramework.Units
         /// </summary>
         public virtual bool IsCellMovableTo(Cell cell)
         {
+
             return !cell.IsTaken;
         }
         /// <summary>
@@ -386,6 +391,7 @@ namespace TbsFramework.Units
         /// </summary>
         public virtual bool IsCellTraversable(Cell cell)
         {
+
             return !cell.IsTaken;
         }
         /// <summary>
@@ -400,6 +406,7 @@ namespace TbsFramework.Units
             {
                 if (!IsCellMovableTo(key))
                 {
+
                     continue;
                 }
                 var path = paths[key];
@@ -416,7 +423,9 @@ namespace TbsFramework.Units
         private Dictionary<Cell, List<Cell>> CachePaths(List<Cell> cells)
         {
             var edges = GetGraphEdges(cells);
+
             var paths = _pathfinder.findAllPaths(edges, Cell);
+
             return paths;
         }
 
@@ -448,6 +457,7 @@ namespace TbsFramework.Units
                     }
                 }
             }
+            Debug.Log(ret);
             return ret;
         }
 

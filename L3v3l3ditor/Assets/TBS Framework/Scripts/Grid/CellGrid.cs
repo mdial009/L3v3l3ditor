@@ -42,6 +42,9 @@ namespace TbsFramework.Grid
         /// </summary>
         public event EventHandler<UnitCreatedEventArgs> UnitAdded;
 
+
+        //public Vector3 offset = new Vector3(0, 1, 1);
+
         private CellGridState _cellGridState; //The grid delegates some of its behaviours to cellGridState object.
         public CellGridState CellGridState
         {
@@ -94,8 +97,7 @@ namespace TbsFramework.Grid
         {
             Debug.Log("Im at Begin");
             if (LevelLoading != null)
-                Debug.Log("Loading.....");
-            LevelLoading.Invoke(this, new EventArgs());
+                LevelLoading.Invoke(this, new EventArgs());
 
             Initialize();
 
@@ -109,6 +111,7 @@ namespace TbsFramework.Grid
         private void Initialize()
         {
             Debug.Log("Initializing");
+            Debug.Log(PlayersParent.position);
             Players = new List<Player>();
             for (int i = 0; i < PlayersParent.childCount; i++)
             {
@@ -137,20 +140,24 @@ namespace TbsFramework.Grid
                 cell.CellHighlighted += OnCellHighlighted;
                 cell.CellDehighlighted += OnCellDehighlighted;
                 cell.GetComponent<Cell>().GetNeighbours(Cells);
+                
             }
 
             Units = new List<Unit>();
             var unitGenerator = GetComponent<IUnitGenerator>();
-           /* if (unitGenerator != null)
+            if (unitGenerator != null)
             {
                 var units = unitGenerator.SpawnUnits(Cells);
+
                 foreach (var unit in units)
                 {
                     AddUnit(unit.GetComponent<Transform>());
+                    //unit.transform.position += offset;
+                    
                 }
             }
             else
-                Debug.LogError("No IUnitGenerator script attached to cell grid");*/
+                Debug.LogError("No IUnitGenerator script attached to cell grid");
         }
 
         private void OnCellDehighlighted(object sender, EventArgs e)
@@ -190,6 +197,7 @@ namespace TbsFramework.Grid
             Units.Add(unit.GetComponent<Unit>());
             unit.GetComponent<Unit>().UnitClicked += OnUnitClicked;
             unit.GetComponent<Unit>().UnitDestroyed += OnUnitDestroyed;
+            
 
             if (UnitAdded != null)
                 UnitAdded.Invoke(this, new UnitCreatedEventArgs(unit));

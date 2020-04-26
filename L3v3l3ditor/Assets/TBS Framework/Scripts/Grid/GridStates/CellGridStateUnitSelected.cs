@@ -3,6 +3,7 @@ using System.Linq;
 using TbsFramework.Cells;
 using TbsFramework.Units;
 using TbsFramework.Units.UnitStates;
+using UnityEngine;
 
 namespace TbsFramework.Grid.GridStates
 {
@@ -19,6 +20,7 @@ namespace TbsFramework.Grid.GridStates
 
         public CellGridStateUnitSelected(CellGrid cellGrid, Unit unit) : base(cellGrid)
         {
+            Debug.Log("unit selected");
             _unit = unit;
             _pathsInRange = new HashSet<Cell>();
             _currentPath = new List<Cell>();
@@ -28,20 +30,28 @@ namespace TbsFramework.Grid.GridStates
 
         public override void OnCellClicked(Cell cell)
         {
+            Debug.Log("Cell CLicked");
             if (_unit.IsMoving)
+            {
+               
                 return;
+            }
+            Debug.Log(_pathsInRange.Count);
             if (cell.IsTaken || !_pathsInRange.Contains(cell))
             {
+                Debug.Log("2nd return");
                 _cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
                 return;
             }
 
+            
             var path = _unit.FindPath(_cellGrid.Cells, cell);
             _unit.Move(cell, path);
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
         }
         public override void OnUnitClicked(Unit unit)
         {
+            Debug.Log("Unit CLicked");
             if (unit.Equals(_unit) || _unit.IsMoving)
                 return;
 
