@@ -333,17 +333,23 @@ namespace TbsFramework.Units
             
             var totalMovementCost = path.Sum(h => h.MovementCost);
             MovementPoints -= totalMovementCost;
-
+            
+            Debug.Log(Cell.transform.position);
+            
             Cell.IsTaken = false;
             Cell.CurrentUnit = null;
             Cell = destinationCell;
             destinationCell.IsTaken = true;
             destinationCell.CurrentUnit = this;
+            
+            Debug.Log(Cell.transform.position);
+            Debug.Log(path);
 
             if (MovementAnimationSpeed > 0)
             {
                 Debug.Log("Move");
                 StartCoroutine(MovementAnimation(path));
+                Debug.Log(MovementAnimation(path));
             }
             else
             {
@@ -363,7 +369,7 @@ namespace TbsFramework.Units
             path.Reverse();
             foreach (var cell in path)
             {
-                Vector3 destination_pos = new Vector3(cell.transform.localPosition.x, cell.transform.localPosition.y, transform.localPosition.z);
+                Vector3 destination_pos = new Vector3(cell.transform.localPosition.x, /*cell.*/transform.localPosition.y, cell.transform.localPosition.z);
                 while (transform.localPosition != destination_pos)
                 {
                     transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination_pos, Time.deltaTime * MovementAnimationSpeed);

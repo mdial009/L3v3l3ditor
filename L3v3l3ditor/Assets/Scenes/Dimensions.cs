@@ -13,6 +13,7 @@ public class Dimensions : MonoBehaviour
 
     List<string> names = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8","9", "10" };
 
+
     public Dropdown dropdown;
 
     // Start is called before the first frame update

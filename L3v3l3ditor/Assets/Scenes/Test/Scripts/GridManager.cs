@@ -91,7 +91,7 @@ namespace TbsFramework.Test.Scripts
             {
                 for (int z = 0; z < Dimensions.cols; z++)
                 {
-                    Vector3 spawnPosition = new Vector3(x /** gridSpacing*/, 0, z /** gridSpacing*/) + origin;
+                    Vector3 spawnPosition = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
                     GameObject square = PickAndSpawn(spawnPosition, Quaternion.identity);
 
                     square.GetComponent<Cell>().OffsetCoord = new Vector2(x, z);

@@ -10,6 +10,7 @@ namespace TbsFramework.Test
         {
             base.Initialize();
             //transform.localPosition -= new Vector3(0, 0, 1);
+            transform.localPosition += new Vector3(0, 1, 0);
             GetComponent<Renderer>().material.color = LeadingColor;
         }
         public override void MarkAsAttacking(Unit other)
