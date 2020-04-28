@@ -216,6 +216,8 @@ public class MouseScript : MonoBehaviour
         eo.data.pos = newUnit.transform.position;
         eo.data.rot = newUnit.transform.rotation;
         eo.data.objectType = EditorObject.ObjectType.Unit;
+        Debug.Log(eo.data.pos);
+        Debug.Log("Added Unit to Save");
 
 
         //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
@@ -325,6 +327,8 @@ public class MouseScript : MonoBehaviour
         eo.data.pos = obs.transform.position;
         eo.data.rot = obs.transform.rotation;
         eo.data.objectType = EditorObject.ObjectType.Obstacle;
+
+      
 
 
         //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
