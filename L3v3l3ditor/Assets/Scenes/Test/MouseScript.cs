@@ -10,7 +10,7 @@ using TbsFramework.Units;
 public class MouseScript : MonoBehaviour
 {
     public enum LevelManipulation { Create, Rotate, Destroy }; // the possible level manipulation types
-    public enum ItemList { Unit }; // the list of items
+    public enum ItemList { Unit, Unit2, Cell, Player, Obstacle }; // the list of items
 
     [HideInInspector] // we hide these to make them known to the rest of the project without them appearing in the Unity editor.
     public ItemList itemOption = ItemList.Unit;
@@ -212,6 +212,11 @@ public class MouseScript : MonoBehaviour
         newUnit.transform.localPosition += offset;
         newUnit.transform.rotation = selectedCell.transform.rotation;
 
+        EditorObject eo = newUnit.AddComponent<EditorObject>();
+        eo.data.pos = newUnit.transform.position;
+        eo.data.rot = newUnit.transform.rotation;
+        eo.data.objectType = EditorObject.ObjectType.Unit;
+
 
         //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
         //}
@@ -270,6 +275,11 @@ public class MouseScript : MonoBehaviour
         newUnit.transform.localPosition += offset;
         newUnit.transform.rotation = selectedCell.transform.rotation;
 
+        EditorObject eo = newUnit.AddComponent<EditorObject>();
+        eo.data.pos = newUnit.transform.position;
+        eo.data.rot = newUnit.transform.rotation;
+        eo.data.objectType = EditorObject.ObjectType.Unit2;
+
 
         //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
         //}
@@ -310,6 +320,11 @@ public class MouseScript : MonoBehaviour
         //newUnit.transform.parent = units.transform;
         obs.transform.localPosition += offset;
         obs.transform.rotation = selectedCell.transform.rotation;
+
+        EditorObject eo = obs.AddComponent<EditorObject>();
+        eo.data.pos = obs.transform.position;
+        eo.data.rot = obs.transform.rotation;
+        eo.data.objectType = EditorObject.ObjectType.Obstacle;
 
 
         //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");

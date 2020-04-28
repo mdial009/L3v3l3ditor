@@ -15,6 +15,8 @@ using TbsFramework.Grid.UnitGenerators;
 namespace TbsFramework.Test.Scripts
 {
 
+
+
     public class GridManager : MonoBehaviour
     {
         //[SerializeField]//SerializeField allows us to change the amount of rows and cols in unity.
@@ -34,7 +36,7 @@ namespace TbsFramework.Test.Scripts
 
         //public int nHumanPlayer = 2;
 
-
+        public enum ItemList { Unit1, Unit2, Cell, Player, Obstacle }; // the list of items
         GameObject cellGrid;
         GameObject players;
         GameObject units;
@@ -99,6 +101,11 @@ namespace TbsFramework.Test.Scripts
                     ret.Add(square.GetComponent<Cell>());
 
                     square.transform.SetParent(cellGrid.transform);
+
+                    EditorObject eo = square.AddComponent<EditorObject>();
+                    eo.data.pos = square.transform.position;
+                    eo.data.rot = square.transform.rotation;
+                    eo.data.objectType = EditorObject.ObjectType.Cell;
 
 
 

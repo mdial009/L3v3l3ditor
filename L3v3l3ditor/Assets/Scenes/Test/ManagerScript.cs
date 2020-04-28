@@ -6,6 +6,10 @@ using UnityEditor;
 using TbsFramework.Gui;
 using TbsFramework.Cells;
 using TbsFramework.Grid;
+using TbsFramework.Players;
+using TbsFramework.Units;
+using TbsFramework.Grid.UnitGenerators;
+using TbsFramework.Test.Scripts;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -41,6 +45,12 @@ public class ManagerScript : MonoBehaviour
     GameObject guiController;
     GameObject manager;
     GameObject cellGrid;
+    GameObject players;
+
+   
+
+    GameObject units;
+    
 
 
     // Start is called before the first frame update
@@ -227,6 +237,8 @@ public class ManagerScript : MonoBehaviour
     // Saving a level
     public void SaveLevel()
     {
+
+
         // Gather all objects with EditorObject component
         EditorObject[] foundObjects = FindObjectsOfType<EditorObject>();
         foreach (EditorObject obj in foundObjects)
@@ -296,6 +308,61 @@ public class ManagerScript : MonoBehaviour
             string json = File.ReadAllText(path); // provide text from json file
             level = JsonUtility.FromJson<LevelEditor>(json); // level information filled from json file
             CreateFromFile(); // create objects from level data.
+
+            /*players = new GameObject("Players");
+            units = new GameObject("Units");
+            cellGrid = new GameObject("CellGrid");
+
+
+            for (int i = 0; i < Dimensions.players; i++)
+            {
+                var player = new GameObject(string.Format("Player_{0}", players.transform.childCount));
+                player.AddComponent<HumanPlayer>();
+                player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
+                player.transform.parent = players.transform;
+            }
+
+
+            var cellGridScript = cellGrid.AddComponent<CellGrid>();
+
+            cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+
+
+
+            var unitGenerator = cellGrid.AddComponent<CustomUnitGenerator>();
+            unitGenerator.UnitsParent = units.transform;
+            unitGenerator.CellsParent = cellGrid.transform;
+
+            var sampleCell = GameObject.Find("Unit1");
+
+            var cellDimensions = sampleCell.GetComponent<Cell>().GetCellDimensions();
+
+            var gridInfo = new GridInfo();
+            //gridInfo.Cells = ret;
+            gridInfo.Dimensions = new Vector3(cellDimensions.x * (Dimensions.rows - 1), cellDimensions.y, cellDimensions.z * (Dimensions.cols - 1));
+            gridInfo.Center = gridInfo.Dimensions / 2;
+
+            var camera = Camera.main;
+            var cameraObject = GameObject.Find("Main Camera");
+
+            camera = cameraObject.GetComponent<Camera>();
+            camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (3.5f * Dimensions.rows), gridInfo.Center.z);
+
+
+            var rotationVector = new Vector3(0f, 0f, 0f);
+
+            camera.transform.Rotate(rotationVector);
+
+            camera.transform.parent = null;
+            camera.transform.SetAsFirstSibling();
+
+
+            guiController = new GameObject("GUIController");
+
+            guiController.SetActive(true);
+            var guiControllerScript = guiController.AddComponent<GUIController>();
+            guiControllerScript.CellGrid = cellGridScript;*/
+
         }
         else // if file could not be found.
         {
