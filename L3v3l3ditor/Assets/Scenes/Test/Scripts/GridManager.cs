@@ -49,13 +49,10 @@ namespace TbsFramework.Test.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            //Structure();
+
             GenerateGrid();
 
 
-            //Structure();
-
-            //BaseStructure();
         }
 
         public void GenerateGrid()
@@ -87,36 +84,30 @@ namespace TbsFramework.Test.Scripts
             //cellGrid.AddComponent<GridManager>();
 
 
-
-
-
             var ret = new List<Cell>();
 
             for (int x = 0; x < Dimensions.rows; x++)
             {
                 for (int z = 0; z < Dimensions.cols; z++)
-                {
-                    //var square = PrefabUtility.InstantiatePrefab(SquarePrefab) as GameObject;
-                    //GameObject square = (GameObject)Instantiate(SquarePrefab, transform);// Takes Gameobject referenceTile and fills each row and col with the game object.
-                    //var squareSize = square.GetComponent<Cell>().GetCellDimensions();
-                    //var squareSize = square.GetComponent<Renderer>().bounds.size;
-
+                {                    
 
                     Vector3 spawnPosition = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
                     GameObject square = PickAndSpawn(spawnPosition, Quaternion.identity);
-                    //var square = PickAndSpawn();
-                    ret.Add(square.GetComponent<Cell>());
-                    //var square = PickAndSpawn();
-
                     //square.transform.position = new Vector3(x * gridSpacing, 0, z * gridSpacing) + origin;
-                    //square.GetComponent<Cell>().OffsetCoord = new Vector2(x, z);
+                    square.GetComponent<Cell>().OffsetCoord = new Vector2(x, z);
                     //square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                     square.GetComponent<Cell>().MovementCost = 1;
-                    //ret.Add(square.GetComponent<Cell>());
+                    
 
                     square.transform.SetParent(cellGrid.transform);
-                    //square.transform.parent = CellsParent;
 
+                    ret.Add(square.GetComponent<Cell>());
+
+                    EditorObject eo = square.AddComponent<EditorObject>();
+                    eo.data.pos = square.transform.position;
+                    eo.data.rot = square.transform.rotation;
+                    eo.data.objectType = EditorObject.ObjectType.Cell;
+                    Debug.Log(eo.data.pos);
 
                 }
             }
@@ -127,16 +118,7 @@ namespace TbsFramework.Test.Scripts
             gridInfo.Cells = ret;
             gridInfo.Dimensions = new Vector3(cellDimensions.x * (Dimensions.rows - 1), cellDimensions.y, cellDimensions.z * (Dimensions.cols - 1));
             gridInfo.Center = gridInfo.Dimensions / 2;
-            //gridDim = new Vector3(cellDimensions.x * (rows - 1), cellDimensions.y * (cols - 1), cellDimensions.z);
-            //gridCen = gridDim / 2;
 
-            //var camera = Camera.main;
-            //var cameraObject = new GameObject("Main Camera");
-            //cameraObject.tag = "MainCamera";
-            //cameraObject.AddComponent<Camera>();
-            //camera = cameraObject.GetComponent<Camera>();
-
-            //camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (1.5f * Dimensions.rows), gridInfo.Center.z);
 
             var camera = Camera.main;
             var cameraObject = GameObject.Find("Main Camera");
@@ -151,11 +133,7 @@ namespace TbsFramework.Test.Scripts
             var rotationVector = new Vector3(0f, 0f, 0f);
 
             camera.transform.Rotate(rotationVector);
-            //camera.transform.parent = cellGrid.transform;
-            //cellGrid.transform.Rotate(rotationVector);
-            //players.transform.Rotate(rotationVector);
-            //units.transform.Rotate(rotationVector);
-            //directionalLight.transform.Rotate(rotationVector);
+
 
             camera.transform.parent = null;
             camera.transform.SetAsFirstSibling();

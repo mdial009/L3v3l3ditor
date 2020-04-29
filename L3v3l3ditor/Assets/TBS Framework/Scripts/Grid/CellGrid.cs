@@ -123,6 +123,7 @@ namespace TbsFramework.Grid
             }
             NumberOfPlayers = Players.Count;
             CurrentPlayerNumber = Players.Min(p => p.PlayerNumber);
+            Debug.Log(CurrentPlayerNumber);
 
             Cells = new List<Cell>();
             for (int i = 0; i < transform.childCount; i++)
@@ -220,8 +221,10 @@ namespace TbsFramework.Grid
         /// </summary>
         public void EndTurn()
         {
+
             if (Units.Select(u => u.PlayerNumber).Distinct().Count() == 1)
             {
+                Debug.Log("here");
                 return;
             }
             CellGridState = new CellGridStateTurnChanging(this);
