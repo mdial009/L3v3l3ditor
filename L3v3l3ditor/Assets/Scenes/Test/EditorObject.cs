@@ -3,7 +3,7 @@ using System;
 
 public class EditorObject : MonoBehaviour // inherit from monobehaviour to use as component in Unity.
 {
-    public enum ObjectType { Unit, Unit2, Cell, Player, Obstacle }; // the different objects this could be attached to.
+    public enum ObjectType { Unit , Unit2, Cell, Player, Obstacle }; // the different objects this could be attached to.
 
     [Serializable] // serialize the Data struct
     public struct Data
