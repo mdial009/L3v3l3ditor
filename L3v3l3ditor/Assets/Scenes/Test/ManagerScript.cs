@@ -64,7 +64,12 @@ public class ManagerScript : MonoBehaviour
     public void ActivateGame()
     {
         cellGrid = GameObject.Find("CellGrid");
+        players = GameObject.Find("Players");
+        units = GameObject.Find("Units");
+
+        players.GetComponent<CellGrid>().Begin();
         cellGrid.GetComponent<CellGrid>().Begin();
+        units.GetComponent<CellGrid>().Begin();
     }
 
     LevelEditor CreateEditor()
@@ -402,7 +407,7 @@ public class ManagerScript : MonoBehaviour
     {
         GameObject newUnit; // make a new object.
         GameObject newUnit2;
-        GameObject newObs;
+        GameObject newObj;
         GameObject newCell;
 
 
@@ -431,69 +436,97 @@ public class ManagerScript : MonoBehaviour
                 eo.data.pos = newUnit.transform.position;
                 eo.data.rot = newUnit.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Unit;
-            }
             
-            if (level.editorObjects[i].objectType == EditorObject.ObjectType.Unit2) // if a cylinder object
-            {
-                
-                
-                newUnit2 = Instantiate(itemsToPickFrom[1]);
-                newUnit2.transform.position = level.editorObjects[i].pos; // set position from data in level
-                newUnit2.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
-                newUnit2.layer = 9; // assign to SpawnedObjects layer.
 
-                newUnit2.GetComponent<Unit>().PlayerNumber = 0;
-                //newUnit2.GetComponent<Unit>().Cell = selectedCell;
-                units = GameObject.Find("Units");
+            }
+            else if(level.editorObjects[i].objectType == EditorObject.ObjectType.Unit2){
+                               
+            
+                int randomIndex = Random.Range(0, itemsToPickFrom.Length);
 
-                newUnit2.transform.SetParent(units.transform);
+
+                newObj = Instantiate(itemsToPickFrom[randomIndex]);
+                newObj.transform.position = level.editorObjects[i].pos; // set position from data in level
+                newObj.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                newObj.layer = 9; // assign to SpawnedObjects layer.
 
                 //Add editor object component and feed data.
-                EditorObject eo = newUnit2.AddComponent<EditorObject>();
-                eo.data.pos = newUnit2.transform.position;
-                eo.data.rot = newUnit2.transform.rotation;
+                EditorObject eo = newObj.AddComponent<EditorObject>();
+                eo.data.pos = newObj.transform.position;
+                eo.data.rot = newObj.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Unit2;
+
+                
+
             }
-            
-            if (level.editorObjects[i].objectType == EditorObject.ObjectType.Obstacle)
-            {
+            else if(level.editorObjects[i].objectType == EditorObject.ObjectType.Cell){
+
                 
-                
-                newObs = Instantiate(itemsToPickFrom[2]);
-                newObs.transform.position = level.editorObjects[i].pos; // set position from data in level
-                newObs.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
-                newObs.layer = 9; // assign to SpawnedObjects layer.
+                int randomIndex = Random.Range(0, itemsToPickFrom.Length);
 
 
+                newObj = Instantiate(itemsToPickFrom[randomIndex]);
+                newObj.transform.position = level.editorObjects[i].pos; // set position from data in level
+                newObj.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                newObj.layer = 9; // assign to SpawnedObjects layer.
 
                 //Add editor object component and feed data.
-                EditorObject eo = newObs.AddComponent<EditorObject>();
-                eo.data.pos = newObs.transform.position;
-                eo.data.rot = newObs.transform.rotation;
-                eo.data.objectType = EditorObject.ObjectType.Obstacle;
-            }
-
-            if (level.editorObjects[i].objectType == EditorObject.ObjectType.Cell)
-            {
-
-
-                newCell = Instantiate(itemsToPickFrom[3]);
-                newCell.transform.position = level.editorObjects[i].pos; // set position from data in level
-                newCell.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
-                //newCell.layer = 9; // assign to SpawnedObjects layer.
-
-                cellGrid = GameObject.Find("CellGrid");
-
-                newCell.transform.SetParent(cellGrid.transform);
-
-
-
-                //Add editor object component and feed data.
-                EditorObject eo = newCell.AddComponent<EditorObject>();
-                eo.data.pos = newCell.transform.position;
-                eo.data.rot = newCell.transform.rotation;
+                EditorObject eo = newObj.AddComponent<EditorObject>();
+                eo.data.pos = newObj.transform.position;
+                eo.data.rot = newObj.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Cell;
+
             }
+            else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Player){
+                int randomIndex = Random.Range(0, itemsToPickFrom.Length);
+
+                newObj = Instantiate(itemsToPickFrom[randomIndex]);
+                newObj.transform.position = level.editorObjects[i].pos; // set position from data in level
+                newObj.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                newObj.layer = 9; // assign to SpawnedObjects layer.
+
+                //Add editor object component and feed data.
+                EditorObject eo = newObj.AddComponent<EditorObject>();
+                eo.data.pos = newObj.transform.position;
+                eo.data.rot = newObj.transform.rotation;
+                eo.data.objectType = EditorObject.ObjectType.Player;
+
+
+            }
+            else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Obstacle){
+                int randomIndex = Random.Range(0, itemsToPickFrom.Length);
+
+
+                newObj = Instantiate(itemsToPickFrom[randomIndex]);
+                newObj.transform.position = level.editorObjects[i].pos; // set position from data in level
+                newObj.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                newObj.layer = 9; // assign to SpawnedObjects layer.
+
+                //Add editor object component and feed data.
+                EditorObject eo = newObj.AddComponent<EditorObject>();
+                eo.data.pos = newObj.transform.position;
+                eo.data.rot = newObj.transform.rotation;
+                eo.data.objectType = EditorObject.ObjectType.Obstacle;
+
+            }
+ 
+            else if(level.editorObjects[i].objectType == EditorObject.ObjectType.Grid){
+
+                
+                int randomIndex = Random.Range(0, itemsToPickFrom.Length);
+
+                newObj = Instantiate(itemsToPickFrom[randomIndex]);
+                newObj.transform.position = level.editorObjects[i].pos; // set position from data in level
+                newObj.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                newObj.layer = 9; // assign to SpawnedObjects layer.
+
+                //Add editor object component and feed data.
+                EditorObject eo = newObj.AddComponent<EditorObject>();
+                eo.data.pos = newObj.transform.position;
+                eo.data.rot = newObj.transform.rotation;
+                eo.data.objectType = EditorObject.ObjectType.Grid;
+            }
+            ActivateGame();
 
         }
 
