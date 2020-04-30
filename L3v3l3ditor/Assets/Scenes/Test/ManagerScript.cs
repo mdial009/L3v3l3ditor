@@ -192,22 +192,12 @@ public class ManagerScript : MonoBehaviour
 
     public void PlayLevel()
     {
-        //cellGrid = GameObject.Find("CellGrid");
-        //cellGrid.GetComponent<CellGrid>().enabled =true;
         guiController = GameObject.Find("GUIController");
         guiController.GetComponent<GUIController>().enabled = true;
-
-        //guiController.GetComponent<GUIController>().enable();
-        //guiController.GetComponent<
-        //manager = GameObject.Find("Manager");
-        //var guiControllerScript = manager.AddComponent<GUIController>();
-
     }
 
     public void EditLevel()
     {
-        //cellGrid = GameObject.Find("CellGrid");
-        //cellGrid.GetComponent<CellGrid>().enabled = false;
         guiController = GameObject.Find("GUIController");
         guiController.GetComponent<GUIController>().enabled = false;
     }
@@ -217,9 +207,7 @@ public class ManagerScript : MonoBehaviour
     // create objects based on data within level.
     private void CreateFromFile()
     {
-        //GameObject newTest; // make a new object.
         players = new GameObject("Players");
-        //cellGrid = new GameObject("CellGrid");
         units = GameObject.Find("Units");
         cellGrid = GameObject.Find("CellGrid");
 
@@ -241,7 +229,7 @@ public class ManagerScript : MonoBehaviour
 
         GameObject LoadLevels;
         
-        for (int i = 0; i < level.editorObjects.Count /*| level.editorObjects.Count!= null*/; i++)
+        for (int i = 0; i < level.editorObjects.Count; i++)
         {
             if (level.editorObjects[i].objectType == EditorObject.ObjectType.Unit) 
             {
@@ -251,7 +239,6 @@ public class ManagerScript : MonoBehaviour
                 LoadLevels.layer = 9; // assign to SpawnedObjects layer.
 
                 LoadLevels.GetComponent<Unit>().PlayerNumber = 0;
-                //newUnit.GetComponent<Unit>().Cell = selectedCell;
                 units = GameObject.Find("Units");
 
                 LoadLevels.transform.SetParent(units.transform);
@@ -271,7 +258,6 @@ public class ManagerScript : MonoBehaviour
                 LoadLevels.layer = 9; // assign to SpawnedObjects layer.
 
                 LoadLevels.GetComponent<Unit>().PlayerNumber = 1;
-                //newUnit2.GetComponent<Unit>().Cell = selectedCell;
                 units = GameObject.Find("Units");
 
                 LoadLevels.transform.SetParent(units.transform);
@@ -304,12 +290,10 @@ public class ManagerScript : MonoBehaviour
                 LoadLevelss.transform.position = level.editorObjects[i].pos; // set position from data in level
                 LoadLevelss.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
                 LoadLevelss.GetComponent<Cell>().OffsetCoord = level.editorObjects[i].coord;
-                //newCell.layer = 9; // assign to SpawnedObjects layer.
                 cellGrid = GameObject.Find("CellGrid");
                 LoadLevelss.transform.SetParent(cellGrid.transform);
 
                 Debug.Log(LoadLevelss.GetComponent<Cell>().OffsetCoord);
-                //Add editor object component and feed data.
                 EditorObject eo = LoadLevelss.AddComponent<EditorObject>();
                 eo.data.pos = LoadLevelss.transform.position;
                 eo.data.rot = LoadLevelss.transform.rotation;
