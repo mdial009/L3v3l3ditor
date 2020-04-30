@@ -43,7 +43,6 @@ public class ManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //rotSlider.onValueChanged.AddListener(delegate { RotationValueChange(); }); // set up listener for rotation slider value change
         CreateEditor(); // create new instance of level.
     }
     public void ActivateGame()
@@ -70,7 +69,7 @@ public class ManagerScript : MonoBehaviour
         cellGrid.GetComponent<CellGrid>().enabled = false;
     }
 
-    LevelEditor CreateEditor()
+    private LevelEditor CreateEditor()
     {
         level = new LevelEditor();
         level.editorObjects = new List<EditorObject.Data>(); // make new list of editor object data.
