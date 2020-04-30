@@ -51,7 +51,7 @@ public class ManagerScript : MonoBehaviour
         cellGrid = GameObject.Find("CellGrid");
         //players = GameObject.Find("Players");
         //units = GameObject.Find("Units");
-
+        cellGrid.GetComponent<CellGrid>().enabled = true;
         //players.GetComponent<CellGrid>().Begin();
         cellGrid.GetComponent<CellGrid>().Begin();
         //units.GetComponent<CellGrid>().Begin();
@@ -63,9 +63,11 @@ public class ManagerScript : MonoBehaviour
     }
     public void DeactivateGame()
     {
+        cellGrid = GameObject.Find("CellGrid");
         guiController = GameObject.Find("GUIController");
 
         guiController.GetComponent<GUIController>().enabled = false;
+        cellGrid.GetComponent<CellGrid>().enabled = false;
     }
 
     LevelEditor CreateEditor()
@@ -219,7 +221,9 @@ public class ManagerScript : MonoBehaviour
         players = new GameObject("Players");
         //cellGrid = new GameObject("CellGrid");
         units = GameObject.Find("Units");
+        cellGrid = GameObject.Find("CellGrid");
 
+        cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
 
         for (int i = 0; i < 2; i++)
         {
@@ -268,7 +272,7 @@ public class ManagerScript : MonoBehaviour
 
                 LoadLevels.GetComponent<Unit>().PlayerNumber = 1;
                 //newUnit2.GetComponent<Unit>().Cell = selectedCell;
-                LoadLevels = GameObject.Find("Units");
+                units = GameObject.Find("Units");
 
                 LoadLevels.transform.SetParent(units.transform);
 
@@ -296,16 +300,19 @@ public class ManagerScript : MonoBehaviour
             else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Cell)
             {
                 Debug.Log("loading grid");
-                LoadLevels = Instantiate(itemsToPickFrom[3]);
-                LoadLevels.transform.position = level.editorObjects[i].pos; // set position from data in level
-                LoadLevels.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                var LoadLevelss = Instantiate(itemsToPickFrom[3]);
+                LoadLevelss.transform.position = level.editorObjects[i].pos; // set position from data in level
+                LoadLevelss.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                LoadLevelss.GetComponent<Cell>().OffsetCoord = level.editorObjects[i].coord;
                 //newCell.layer = 9; // assign to SpawnedObjects layer.
                 cellGrid = GameObject.Find("CellGrid");
-                LoadLevels.transform.SetParent(cellGrid.transform);
+                LoadLevelss.transform.SetParent(cellGrid.transform);
+
+                Debug.Log(LoadLevelss.GetComponent<Cell>().OffsetCoord);
                 //Add editor object component and feed data.
-                EditorObject eo = LoadLevels.AddComponent<EditorObject>();
-                eo.data.pos = LoadLevels.transform.position;
-                eo.data.rot = LoadLevels.transform.rotation;
+                EditorObject eo = LoadLevelss.AddComponent<EditorObject>();
+                eo.data.pos = LoadLevelss.transform.position;
+                eo.data.rot = LoadLevelss.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Cell;
             }
 

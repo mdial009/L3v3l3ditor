@@ -113,7 +113,8 @@ namespace TbsFramework.Test.Scripts
                     square.GetComponent<Cell>().OffsetCoord = new Vector2(x, z);
                     //square.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                     square.GetComponent<Cell>().MovementCost = 1;
-                    
+                    Debug.Log(square.GetComponent<Cell>().OffsetCoord);
+
 
                     square.transform.SetParent(cellGrid.transform);
 
@@ -122,7 +123,9 @@ namespace TbsFramework.Test.Scripts
                     EditorObject eo = square.AddComponent<EditorObject>();
                     eo.data.pos = square.transform.position;
                     eo.data.rot = square.transform.rotation;
+                    eo.data.coord = square.GetComponent<Cell>().OffsetCoord;
                     eo.data.objectType = EditorObject.ObjectType.Cell;
+                    
                     
 
                 }

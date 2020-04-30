@@ -11,6 +11,7 @@ public class EditorObject : MonoBehaviour // inherit from monobehaviour to use a
         public Vector3 pos; // the object's position
         public Quaternion rot; // the object's rotation
         public ObjectType objectType; // the type of object.
+        public Vector2 coord;
     }
 
     public Data data; // public reference to Data
