@@ -11,6 +11,7 @@ using TbsFramework.Units;
 using TbsFramework.Grid.UnitGenerators;
 using TbsFramework.Test.Scripts;
 
+
 public class ManagerScript : MonoBehaviour
 {
     public GameObject[] itemsToPickFrom;
@@ -301,6 +302,7 @@ public class ManagerScript : MonoBehaviour
     // Loading a level
     public void LoadLevel()
     {
+        //RestartLevel();
         Debug.Log("Level loaded");
 
         string folder = Application.dataPath + "/LevelData/";
@@ -415,10 +417,50 @@ public class ManagerScript : MonoBehaviour
         guiController.GetComponent<GUIController>().enabled = false;
     }
 
+    
+
     // create objects based on data within level.
     private void CreateFromFile()
     {
         //GameObject newTest; // make a new object.
+        players = new GameObject("Players");
+        //cellGrid = new GameObject("CellGrid");
+        units = GameObject.Find("Units");
+
+
+        for (int i = 0; i < 2; i++)
+        {
+            var player = new GameObject(string.Format("Player_{0}", players.transform.childCount));
+            player.AddComponent<HumanPlayer>();
+            player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
+            player.transform.parent = players.transform;
+        }
+
+        EditorObject p = players.AddComponent<EditorObject>();
+        p.data.pos = players.transform.position;
+        p.data.rot = players.transform.rotation;
+        p.data.objectType = EditorObject.ObjectType.Player;
+
+
+        /*var cellGridScript = cellGrid.AddComponent<CellGrid>();
+
+        cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+
+        guiController = new GameObject("GUIController");
+
+        guiController.SetActive(true);
+        var guiControllerScript = guiController.AddComponent<GUIController>();
+        guiControllerScript.CellGrid = cellGridScript;
+
+
+        var unitGenerator = cellGrid.AddComponent<CustomUnitGenerator>();
+        unitGenerator.UnitsParent = units.transform;
+        unitGenerator.CellsParent = cellGrid.transform;
+
+        EditorObject c = cellGrid.AddComponent<EditorObject>();
+        c.data.pos = cellGrid.transform.position;
+        c.data.rot = cellGrid.transform.rotation;
+        c.data.objectType = EditorObject.ObjectType.Grid;*/
 
         GameObject unit;
         GameObject unit2;
@@ -454,7 +496,7 @@ public class ManagerScript : MonoBehaviour
                 unit2.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
                 unit2.layer = 9; // assign to SpawnedObjects layer.
 
-                unit2.GetComponent<Unit>().PlayerNumber = 0;
+                unit2.GetComponent<Unit>().PlayerNumber = 1;
                 //newUnit2.GetComponent<Unit>().Cell = selectedCell;
                 units = GameObject.Find("Units");
 
@@ -483,6 +525,7 @@ public class ManagerScript : MonoBehaviour
 
             else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Cell)
             {
+                Debug.Log("loading grid");
                 cell = Instantiate(itemsToPickFrom[3]);
                 cell.transform.position = level.editorObjects[i].pos; // set position from data in level
                 cell.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.

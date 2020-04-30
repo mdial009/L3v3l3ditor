@@ -132,20 +132,6 @@ public class MouseScript : MonoBehaviour
 
     }
 
-
-    //private Cell GetSelectedCell()
-    //{
-
-    //RaycastHit raycastHit3D;
-    //bool isRaycast3D = Physics.Raycast(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition), out raycastHit3D);
-    //if (raycastHit3D.transform.GetComponent<Cell>() != null)
-    //{
-    //  return raycastHit3D.transform.GetComponent<Cell>();
-    //}
-
-    //return null;
-    // }
-
     private Cell GetSelectedCell()
     {
         mousePos = Input.mousePosition;
@@ -166,34 +152,18 @@ public class MouseScript : MonoBehaviour
 
 
         Debug.Log("Creating Units");
-        //GameObject UnitsParent = unitsGameObjectPresent ? GameObject.Find("Units") : unitsGameObject;
-        // if (UnitsParent == null)
-        //{
-        //   return;
-        //}
-
         var selectedCell = GetSelectedCell();
         if (selectedCell == null)
         {
             return;
         }
 
-        //var mapType = mapTypes[mapTypeIndex];
-        //Handles.color = Color.red;
-        //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.up, selectedCell.GetCellDimensions().y / 2);
-        //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.forward, selectedCell.GetCellDimensions().y / 2);
-        //HandleUtility.Repaint();
-        //if (Event.current.button == 0 && (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.MouseDown))
-        //{
+ 
         if (selectedCell.IsTaken)
         {
             return;
         }
 
-        //Undo.SetCurrentGroupName("Unit painting");
-        //int group = Undo.GetCurrentGroup();
-
-        //Undo.RecordObject(selectedCell, "Unit painting");
 
         selectedCell.IsTaken = true;
         int Index = 0;
@@ -204,7 +174,7 @@ public class MouseScript : MonoBehaviour
         units = GameObject.Find("Units");
 
 
-        //var offset = new Vector3(0, selectedCell.GetCellDimensions().y, 0);
+       
         var offset = new Vector3(0, 1, 0);
         newUnit.transform.position = selectedCell.transform.position;
         newUnit.transform.SetParent(units.transform);
@@ -220,8 +190,7 @@ public class MouseScript : MonoBehaviour
         Debug.Log("Added Unit to Save");
 
 
-        //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
-        //}
+  
     }
 
     public void CreateP2_Units()
@@ -229,11 +198,7 @@ public class MouseScript : MonoBehaviour
 
 
         Debug.Log("Creating Units");
-        //GameObject UnitsParent = unitsGameObjectPresent ? GameObject.Find("Units") : unitsGameObject;
-        // if (UnitsParent == null)
-        //{
-        //   return;
-        //}
+
 
         var selectedCell = GetSelectedCell();
         if (selectedCell == null)
@@ -241,22 +206,12 @@ public class MouseScript : MonoBehaviour
             return;
         }
 
-        //var mapType = mapTypes[mapTypeIndex];
-        //Handles.color = Color.red;
-        //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.up, selectedCell.GetCellDimensions().y / 2);
-        //Handles.DrawWireDisc(selectedCell.transform.position, Vector3.forward, selectedCell.GetCellDimensions().y / 2);
-        //HandleUtility.Repaint();
-        //if (Event.current.button == 0 && (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.MouseDown))
-        //{
+
         if (selectedCell.IsTaken)
         {
             return;
         }
 
-        //Undo.SetCurrentGroupName("Unit painting");
-        //int group = Undo.GetCurrentGroup();
-
-        //Undo.RecordObject(selectedCell, "Unit painting");
 
         selectedCell.IsTaken = true;
 
@@ -269,7 +224,6 @@ public class MouseScript : MonoBehaviour
         units = GameObject.Find("Units");
 
 
-        //var offset = new Vector3(0, selectedCell.GetCellDimensions().y, 0);
         var offset = new Vector3(0, 1, 0);
         newUnit.transform.position = selectedCell.transform.position;
         newUnit.transform.SetParent(units.transform);
@@ -283,8 +237,6 @@ public class MouseScript : MonoBehaviour
         eo.data.objectType = EditorObject.ObjectType.Unit2;
 
 
-        //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
-        //}
     }
     public void CreateObstacles()
     {
@@ -304,18 +256,12 @@ public class MouseScript : MonoBehaviour
             return;
         }
 
-        //Undo.SetCurrentGroupName("Unit painting");
-        //int group = Undo.GetCurrentGroup();
-        //var cells = CellGrid.GetComponentsInChildren<Cell>();
-        //Undo.RecordObject(selectedCell, "Unit painting");
-
         selectedCell.IsTaken = true;
         int Index = 2;
         GameObject obs = Instantiate(itemsToPickFrom[Index]);
         obs.layer = 9;
 
 
-        //var offset = new Vector3(0, selectedCell.GetCellDimensions().y, 0);
         var offset = new Vector3(0, 1, 0);
         obs.transform.position = selectedCell.transform.position;
         //obs.transform.SetParent(cellGrid.transform);
@@ -330,9 +276,6 @@ public class MouseScript : MonoBehaviour
 
       
 
-
-        //Undo.RegisterCreatedObjectUndo(newUnit.gameObject, "Unit painting");
-        //}
     }
 
     /// <summary>

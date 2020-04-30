@@ -89,6 +89,8 @@ namespace TbsFramework.Grid.GridStates
         }
         public override void OnCellSelected(Cell cell)
         {
+
+
             base.OnCellSelected(cell);
             if (!_pathsInRange.Contains(cell)) return;
 
@@ -118,7 +120,11 @@ namespace TbsFramework.Grid.GridStates
             _unit.OnUnitSelected();
             _unitCell = _unit.Cell;
 
+            Debug.Log(_pathsInRange.Count);
+
             _pathsInRange = _unit.GetAvailableDestinations(_cellGrid.Cells);
+            Debug.Log(_pathsInRange.Count);
+
             var cellsNotInRange = _cellGrid.Cells.Except(_pathsInRange);
 
             foreach (var cell in cellsNotInRange)

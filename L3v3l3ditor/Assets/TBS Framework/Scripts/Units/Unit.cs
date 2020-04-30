@@ -408,6 +408,7 @@ namespace TbsFramework.Units
             cachedPaths = new Dictionary<Cell, List<Cell>>();
 
             var paths = CachePaths(cells);
+            Debug.Log(paths.Count);
             foreach (var key in paths.Keys)
             {
                 if (!IsCellMovableTo(key))
@@ -428,10 +429,9 @@ namespace TbsFramework.Units
 
         private Dictionary<Cell, List<Cell>> CachePaths(List<Cell> cells)
         {
+            Debug.Log(cells.Count);
             var edges = GetGraphEdges(cells);
-
             var paths = _pathfinder.findAllPaths(edges, Cell);
-
             return paths;
         }
 

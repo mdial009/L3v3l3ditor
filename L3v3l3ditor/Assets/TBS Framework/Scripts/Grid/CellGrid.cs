@@ -123,7 +123,9 @@ namespace TbsFramework.Grid
             }
             NumberOfPlayers = Players.Count;
             CurrentPlayerNumber = Players.Min(p => p.PlayerNumber);
-            Debug.Log(CurrentPlayerNumber);
+            Debug.Log(NumberOfPlayers);
+            
+
 
             Cells = new List<Cell>();
             for (int i = 0; i < transform.childCount; i++)
@@ -134,6 +136,7 @@ namespace TbsFramework.Grid
                 else
                     Debug.LogError("Invalid object in cells paretn game object");
             }
+            Debug.Log(Cells.Count);
 
             foreach (var cell in Cells)
             {
@@ -145,18 +148,20 @@ namespace TbsFramework.Grid
             }
 
             Units = new List<Unit>();
+            
             var unitGenerator = GetComponent<IUnitGenerator>();
             if (unitGenerator != null)
             {
                 var units = unitGenerator.SpawnUnits(Cells);
-
+                
                 foreach (var unit in units)
                 {
                     AddUnit(unit.GetComponent<Transform>());
                     //unit.transform.position += offset;
                     
                 }
-            }
+                Debug.Log(units.Count);
+            }           
             else
                 Debug.LogError("No IUnitGenerator script attached to cell grid");
         }

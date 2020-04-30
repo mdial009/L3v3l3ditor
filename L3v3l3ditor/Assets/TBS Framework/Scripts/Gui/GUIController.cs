@@ -40,7 +40,7 @@ namespace TbsFramework.Gui
         public void check()
         {
             guiController = GameObject.Find("GUIController");
-            if (guiController.GetComponent<GUIController>().enabled == false)
+            if (guiController.GetComponent<GUIController>().enabled == true)
             {
                 Debug.Log("GUI Start");
                 CellGrid.LevelLoading += onLevelLoading;

@@ -68,12 +68,22 @@ namespace TbsFramework.Test.Scripts
                 player.AddComponent<HumanPlayer>();
                 player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
                 player.transform.parent = players.transform;
+
+                
+
             }
+
+            EditorObject p = players.AddComponent<EditorObject>();
+            p.data.pos = players.transform.position;
+            p.data.rot = players.transform.rotation;
+            p.data.objectType = EditorObject.ObjectType.Player;
 
 
             var cellGridScript = cellGrid.AddComponent<CellGrid>();
 
             cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+
+           
 
 
 
@@ -82,6 +92,12 @@ namespace TbsFramework.Test.Scripts
             unitGenerator.CellsParent = cellGrid.transform;
 
             //cellGrid.AddComponent<GridManager>();
+
+           /* EditorObject c = cellGrid.AddComponent<EditorObject>();
+            c.data.pos = cellGrid.transform.position;
+            c.data.rot = cellGrid.transform.rotation;
+            c.data.objectType = EditorObject.ObjectType.Grid;*/
+            
 
 
             var ret = new List<Cell>();
@@ -107,7 +123,7 @@ namespace TbsFramework.Test.Scripts
                     eo.data.pos = square.transform.position;
                     eo.data.rot = square.transform.rotation;
                     eo.data.objectType = EditorObject.ObjectType.Cell;
-                    Debug.Log(eo.data.pos);
+                    
 
                 }
             }
