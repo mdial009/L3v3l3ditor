@@ -8,6 +8,8 @@ namespace TbsFramework.Gui
     public class GUIController : MonoBehaviour
     {
         public CellGrid CellGrid;
+      
+        
 
         GameObject guiController;
 
@@ -40,7 +42,7 @@ namespace TbsFramework.Gui
         public void check()
         {
             guiController = GameObject.Find("GUIController");
-            if (guiController.GetComponent<GUIController>().enabled == true)
+            if (guiController.GetComponent<GUIController>().enabled == false)
             {
                 Debug.Log("GUI Start");
                 CellGrid.LevelLoading += onLevelLoading;
