@@ -8,6 +8,7 @@ using TbsFramework.Grid;
 using TbsFramework.Players;
 using TbsFramework.Units;
 using TbsFramework.Grid.UnitGenerators;
+
 //using TbsFramework
 //using TbsFramework.EditorUtils.GridGenerators;
 
@@ -38,6 +39,8 @@ namespace TbsFramework.Test.Scripts
         GameObject players;
         GameObject units;
         GameObject guiController;
+        GameObject guiCam;
+
 
 
 
@@ -59,8 +62,8 @@ namespace TbsFramework.Test.Scripts
         {
             players = new GameObject("Players");
             units = new GameObject("Units");
-            cellGrid = new GameObject("CellGrid");
-
+            //cellGrid = new GameObject("CellGrid");
+            cellGrid = GameObject.Find("CellGrid");
 
             for (int i = 0; i < Dimensions.players; i++)
             {
@@ -82,8 +85,9 @@ namespace TbsFramework.Test.Scripts
             var cellGridScript = cellGrid.AddComponent<CellGrid>();
 
             cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
+            
+            //var cellGridScript = cellGrid.GetComponent<CellGrid>();
 
-           
 
 
 
@@ -91,12 +95,7 @@ namespace TbsFramework.Test.Scripts
             unitGenerator.UnitsParent = units.transform;
             unitGenerator.CellsParent = cellGrid.transform;
 
-            //cellGrid.AddComponent<GridManager>();
-
-           /* EditorObject c = cellGrid.AddComponent<EditorObject>();
-            c.data.pos = cellGrid.transform.position;
-            c.data.rot = cellGrid.transform.rotation;
-            c.data.objectType = EditorObject.ObjectType.Grid;*/
+           
             
 
 
@@ -158,12 +157,18 @@ namespace TbsFramework.Test.Scripts
             camera.transform.SetAsFirstSibling();
 
 
-            guiController = new GameObject("GUIController");
+            //guiController = new GameObject("GUIController");
+            guiController = GameObject.Find("GUIController");
 
             guiController.SetActive(true);
             var guiControllerScript = guiController.AddComponent<GUIController>();
+            //var guiControllerScript = guiController.GetComponent<GUIController>();
+
             guiControllerScript.CellGrid = cellGridScript;
 
+            
+
+            
         }
 
         public GameObject PickAndSpawn(Vector3 positionToSpawn, Quaternion rotationToSpawn)
@@ -179,44 +184,6 @@ namespace TbsFramework.Test.Scripts
 
 
 
-
-
-        public void Edit()
-        {
-
-        }
-
-        public void Structure()
-        {
-            players = new GameObject("Players");
-            units = new GameObject("Units");
-            cellGrid = new GameObject("CellGrid");
-            //guiController = new GameObject("GUIController");
-
-            for (int i = 0; i < Dimensions.players; i++)
-            {
-                var player = new GameObject(string.Format("Player_{0}", players.transform.childCount));
-                player.AddComponent<HumanPlayer>();
-                player.GetComponent<Player>().PlayerNumber = players.transform.childCount;
-                player.transform.parent = players.transform;
-            }
-
-
-            var cellGridScript = cellGrid.AddComponent<CellGrid>();
-
-            cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
-
-
-
-            var unitGenerator = cellGrid.AddComponent<CustomUnitGenerator>();
-            unitGenerator.UnitsParent = units.transform;
-            unitGenerator.CellsParent = cellGrid.transform;
-
-            cellGrid.AddComponent<GridManager>();
-
-
-
-        }
 
         // Update is called once per frame
         void Update()

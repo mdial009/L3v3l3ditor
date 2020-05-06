@@ -87,6 +87,7 @@ namespace TbsFramework.Example1
 
         private void RegisterUnit(Transform unit)
         {
+            Debug.Log("hi");
             unit.GetComponent<Unit>().UnitHighlighted += OnUnitHighlighted;
             unit.GetComponent<Unit>().UnitDehighlighted += OnUnitDehighlighted;
             unit.GetComponent<Unit>().UnitAttacked += OnUnitAttacked;

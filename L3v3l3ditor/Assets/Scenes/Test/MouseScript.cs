@@ -10,7 +10,7 @@ using TbsFramework.Units;
 public class MouseScript : MonoBehaviour
 {
     public enum LevelManipulation { Create, Rotate, Destroy }; // the possible level manipulation types
-    public enum ItemList { Unit, Unit2, Cell, Player, Obstacle }; // the list of items
+    public enum ItemList { Unit, Unit2, Cell, Player, Obstacle, Grid, Camera}; // the list of items
 
     [HideInInspector] // we hide these to make them known to the rest of the project without them appearing in the Unity editor.
     public ItemList itemOption = ItemList.Unit;
@@ -97,6 +97,7 @@ public class MouseScript : MonoBehaviour
                     SetRotateObject();
                 else if (colliding == true && manipulateOption == LevelManipulation.Destroy) // select object under mouse to be destroyed.
                 {
+
                     if (hit.collider.gameObject.name.Contains("PlayerModel")) // if player object, set ms.playerPlaced to false indicating no player object in level.
                         ms.playerPlaced = false;
 
@@ -164,7 +165,8 @@ public class MouseScript : MonoBehaviour
             return;
         }
 
-
+        /*EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;*/
         selectedCell.IsTaken = true;
         int Index = 0;
         GameObject newUnit = Instantiate(itemsToPickFrom[Index]);
@@ -211,7 +213,8 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
-
+        /*EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;*/
 
         selectedCell.IsTaken = true;
 
@@ -255,6 +258,8 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
+        /*EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;*/
 
         selectedCell.IsTaken = true;
         int Index = 2;

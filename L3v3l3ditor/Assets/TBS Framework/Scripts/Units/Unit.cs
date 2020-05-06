@@ -167,6 +167,7 @@ namespace TbsFramework.Units
         {
             if (UnitHighlighted != null)
             {
+                Debug.Log("Mouse Enter");
                 UnitHighlighted.Invoke(this, new EventArgs());
             }
         }
@@ -174,6 +175,7 @@ namespace TbsFramework.Units
         {
             if (UnitDehighlighted != null)
             {
+                Debug.Log("Mouse Exit");
                 UnitDehighlighted.Invoke(this, new EventArgs());
             }
         }
@@ -347,14 +349,14 @@ namespace TbsFramework.Units
 
             if (MovementAnimationSpeed > 0)
             {
-                Debug.Log("Move");
+                
                 StartCoroutine(MovementAnimation(path));
-                Debug.Log(MovementAnimation(path));
+               
             }
             else
             {
-                Debug.Log("Move");
-                Debug.Log(Cell.transform.position);
+                
+                
                 transform.position = Cell.transform.position;
             }
 
@@ -370,6 +372,8 @@ namespace TbsFramework.Units
             foreach (var cell in path)
             {
                 Vector3 destination_pos = new Vector3(cell.transform.localPosition.x, /*cell.*/transform.localPosition.y, cell.transform.localPosition.z);
+                Debug.Log(destination_pos);
+                Debug.Log(transform.localPosition);
                 while (transform.localPosition != destination_pos)
                 {
                     transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination_pos, Time.deltaTime * MovementAnimationSpeed);
