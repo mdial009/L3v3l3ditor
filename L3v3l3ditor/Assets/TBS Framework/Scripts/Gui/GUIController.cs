@@ -27,22 +27,36 @@ namespace TbsFramework.Gui
             //CellGrid.LevelLoadingDone += onLevelLoadingDone;
         //}
 
-        void Start()
+        /*void Start()
         {
             Debug.Log("GUI Start");
-            CellGrid.LevelLoading += onLevelLoading;
+            /*CellGrid.LevelLoading += onLevelLoading;
             CellGrid.LevelLoadingDone += onLevelLoadingDone;
 
-            /*CellGrid.GameStarted += OnGameStarted;
+            CellGrid.GameStarted += OnGameStarted;
            // CellGrid.TurnEnded += OnTurnEnded;
             CellGrid.GameEnded += OnGameEnded;
-            CellGrid.UnitAdded += OnUnitAdded;*/
+            CellGrid.UnitAdded += OnUnitAdded;
+        }*/
+
+        public void Begin()
+        {
+            Debug.Log("GUI Start");
+            /*CellGrid.LevelLoading += onLevelLoading;
+            CellGrid.LevelLoadingDone += onLevelLoadingDone;*/
+
+            CellGrid.GameStarted += OnGameStarted;
+            // CellGrid.TurnEnded += OnTurnEnded;
+            CellGrid.GameEnded += OnGameEnded;
+            CellGrid.UnitAdded += OnUnitAdded;
         }
 
-        /*private void OnGameStarted(object sender, EventArgs e)
+        private void OnGameStarted(object sender, EventArgs e)
         {
-            foreach (Transform cell in CellGrid.transform)
+            Debug.Log("On");
+;            foreach (Transform cell in CellGrid.transform)
             {
+                Debug.Log("On1");
                 cell.GetComponent<Cell>().CellHighlighted += OnCellHighlighted;
                 cell.GetComponent<Cell>().CellDehighlighted += OnCellDehighlighted;
             }
@@ -60,7 +74,7 @@ namespace TbsFramework.Gui
             NextTurnButton.interactable = ((sender as CellGrid).CurrentPlayer is HumanPlayer);
 
             InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1);
-        }*/
+        }
 
 
 
@@ -75,7 +89,7 @@ namespace TbsFramework.Gui
             Debug.Log("Press 'n' to end turn");
         }
 
-        /*private void OnCellDehighlighted(object sender, EventArgs e)
+        private void OnCellDehighlighted(object sender, EventArgs e)
         {
             //UnitImage.color = Color.gray;
             StatsText.text = "";
@@ -132,7 +146,7 @@ namespace TbsFramework.Gui
                 CellGrid.LevelLoading += onLevelLoading;
                 CellGrid.LevelLoadingDone += onLevelLoadingDone;
             }
-        }*/
+        }
 
         void Update()
         {

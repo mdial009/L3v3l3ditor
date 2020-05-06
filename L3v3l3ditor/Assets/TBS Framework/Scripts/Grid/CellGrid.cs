@@ -41,7 +41,9 @@ namespace TbsFramework.Grid
         /// UnitAdded event is invoked each time AddUnit method is called.
         /// </summary>
         public event EventHandler<UnitCreatedEventArgs> UnitAdded;
-
+        
+        
+        GameObject manager;
 
         //public Vector3 offset = new Vector3(0, 1, 1);
 
@@ -78,9 +80,13 @@ namespace TbsFramework.Grid
         public List<Cell> Cells { get; private set; }
         public List<Unit> Units { get; private set; }
 
-        /*private void Start()
+        private void Start()
         {
-            if (LevelLoading != null)
+            Debug.Log("HI");
+
+            manager = GameObject.Find("Manager");
+            manager.GetComponent<ManagerScript>().DeactivateGame();
+            /*if (LevelLoading != null)
                 Debug.Log("Loading.....");
                 LevelLoading.Invoke(this, new EventArgs());
 
@@ -90,8 +96,8 @@ namespace TbsFramework.Grid
                 //Debug.Log("Done!");
                 LevelLoadingDone.Invoke(this, new EventArgs());
 
-            StartGame();
-        }*/
+            StartGame();*/
+        }
 
         public void Begin()
         {

@@ -58,6 +58,7 @@ public class ManagerScript : MonoBehaviour
         guiController = GameObject.Find("GUIController");
 
         guiController.GetComponent<GUIController>().enabled = true;
+        guiController.GetComponent<GUIController>().Begin();
 
     }
     public void DeactivateGame()

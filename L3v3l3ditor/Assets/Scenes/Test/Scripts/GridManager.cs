@@ -160,11 +160,12 @@ namespace TbsFramework.Test.Scripts
             //guiController = new GameObject("GUIController");
             guiController = GameObject.Find("GUIController");
 
-            guiController.SetActive(true);
-            var guiControllerScript = guiController.AddComponent<GUIController>();
-            //var guiControllerScript = guiController.GetComponent<GUIController>();
+            //guiController.SetActive(true);
+            //var guiControllerScript = guiController.AddComponent<GUIController>();
+            var guiControllerScript = guiController.GetComponent<GUIController>();
 
             guiControllerScript.CellGrid = cellGridScript;
+
 
             
 
