@@ -80,7 +80,7 @@ namespace TbsFramework.Grid
         public List<Cell> Cells { get; private set; }
         public List<Unit> Units { get; private set; }
 
-        private void Start()
+        /*private void Start()
         {
             Debug.Log("HI");
 
@@ -96,8 +96,8 @@ namespace TbsFramework.Grid
                 //Debug.Log("Done!");
                 LevelLoadingDone.Invoke(this, new EventArgs());
 
-            StartGame();*/
-        }
+            StartGame();
+        }*/
 
         public void Begin()
         {

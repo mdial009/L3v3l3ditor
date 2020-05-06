@@ -34,7 +34,7 @@ namespace TbsFramework.Gui
             CellGrid.LevelLoadingDone += onLevelLoadingDone;
 
             CellGrid.GameStarted += OnGameStarted;
-           // CellGrid.TurnEnded += OnTurnEnded;
+            CellGrid.TurnEnded += OnTurnEnded;
             CellGrid.GameEnded += OnGameEnded;
             CellGrid.UnitAdded += OnUnitAdded;
         }*/
@@ -46,7 +46,7 @@ namespace TbsFramework.Gui
             CellGrid.LevelLoadingDone += onLevelLoadingDone;*/
 
             CellGrid.GameStarted += OnGameStarted;
-            // CellGrid.TurnEnded += OnTurnEnded;
+            CellGrid.TurnEnded += OnTurnEnded;
             CellGrid.GameEnded += OnGameEnded;
             CellGrid.UnitAdded += OnUnitAdded;
         }

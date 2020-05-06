@@ -47,16 +47,12 @@ public class ManagerScript : MonoBehaviour
     }
     public void ActivateGame()
     {
-        cellGrid = GameObject.Find("CellGrid");
-        //players = GameObject.Find("Players");
-        //units = GameObject.Find("Units");
+        cellGrid = GameObject.Find("CellGrid");     
         cellGrid.GetComponent<CellGrid>().enabled = true;
-        //players.GetComponent<CellGrid>().Begin();
         cellGrid.GetComponent<CellGrid>().Begin();
-        //units.GetComponent<CellGrid>().Begin();
+        
 
         guiController = GameObject.Find("GUIController");
-
         guiController.GetComponent<GUIController>().enabled = true;
         guiController.GetComponent<GUIController>().Begin();
 
@@ -235,6 +231,8 @@ public class ManagerScript : MonoBehaviour
     
 
         GameObject LoadLevels;
+        var ret = new List<Cell>();
+
 
         for (int i = 0; i < level.editorObjects.Count; i++)
         {
@@ -294,11 +292,17 @@ public class ManagerScript : MonoBehaviour
             {
                 Debug.Log("loading grid");
                 var LoadLevelss = Instantiate(itemsToPickFrom[3]);
+                if (level.editorObjects[i].isTaken == true)
+                {
+                    LoadLevelss.GetComponent<Cell>().IsTaken = true;
+                }
                 LoadLevelss.transform.position = level.editorObjects[i].pos; // set position from data in level
                 LoadLevelss.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
                 LoadLevelss.GetComponent<Cell>().OffsetCoord = level.editorObjects[i].coord;
+                LoadLevelss.GetComponent<Cell>().MovementCost = 1;
                 cellGrid = GameObject.Find("CellGrid");
                 LoadLevelss.transform.SetParent(cellGrid.transform);
+
 
                 Debug.Log(LoadLevelss.GetComponent<Cell>().OffsetCoord);
                 EditorObject eo = LoadLevelss.AddComponent<EditorObject>();
@@ -307,7 +311,6 @@ public class ManagerScript : MonoBehaviour
                 eo.data.objectType = EditorObject.ObjectType.Cell;
                 
             }
-
 
         }
     }

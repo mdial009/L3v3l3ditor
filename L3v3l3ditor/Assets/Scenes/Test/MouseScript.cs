@@ -165,8 +165,8 @@ public class MouseScript : MonoBehaviour
             return;
         }
 
-        /*EditorObject c = selectedCell.GetComponent<EditorObject>();
-        c.data.isTaken = true;*/
+        EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;
         selectedCell.IsTaken = true;
         int Index = 0;
         GameObject newUnit = Instantiate(itemsToPickFrom[Index]);
@@ -213,8 +213,8 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
-        /*EditorObject c = selectedCell.GetComponent<EditorObject>();
-        c.data.isTaken = true;*/
+        EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;
 
         selectedCell.IsTaken = true;
 
@@ -258,8 +258,8 @@ public class MouseScript : MonoBehaviour
         {
             return;
         }
-        /*EditorObject c = selectedCell.GetComponent<EditorObject>();
-        c.data.isTaken = true;*/
+        EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;
 
         selectedCell.IsTaken = true;
         int Index = 2;

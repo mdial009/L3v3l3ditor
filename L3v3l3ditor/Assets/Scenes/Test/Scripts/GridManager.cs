@@ -62,8 +62,8 @@ namespace TbsFramework.Test.Scripts
         {
             players = new GameObject("Players");
             units = new GameObject("Units");
-            //cellGrid = new GameObject("CellGrid");
-            cellGrid = GameObject.Find("CellGrid");
+            cellGrid = new GameObject("CellGrid");
+            //cellGrid = GameObject.Find("CellGrid");
 
             for (int i = 0; i < Dimensions.players; i++)
             {
@@ -160,16 +160,16 @@ namespace TbsFramework.Test.Scripts
             //guiController = new GameObject("GUIController");
             guiController = GameObject.Find("GUIController");
 
-            //guiController.SetActive(true);
+            
             //var guiControllerScript = guiController.AddComponent<GUIController>();
             var guiControllerScript = guiController.GetComponent<GUIController>();
 
             guiControllerScript.CellGrid = cellGridScript;
 
+            //guiController.SetActive(false);
 
-            
+            cellGrid.GetComponent<CellGrid>().enabled = false;
 
-            
         }
 
         public GameObject PickAndSpawn(Vector3 positionToSpawn, Quaternion rotationToSpawn)
