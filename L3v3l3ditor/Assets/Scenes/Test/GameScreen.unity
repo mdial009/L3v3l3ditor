@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 237250428}
   - component: {fileID: 237250427}
   m_Layer: 5
-  m_Name: SAveButton
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4359,9 +4359,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148232848}
-        m_MethodName: OpenFileBrowser
-        m_Mode: 6
+      - m_Target: {fileID: 1222089120}
+        m_MethodName: SaveLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5302,8 +5302,8 @@ MonoBehaviour:
   user: {fileID: 1526454224}
   rotSlider: {fileID: 0}
   rotUI: {fileID: 0}
-  levelNameSave: {fileID: 309679398}
-  levelNameLoad: {fileID: 1892264476}
+  levelNameSave: {fileID: 1819375268}
+  levelNameLoad: {fileID: 2097798379}
 --- !u!4 &1222089121
 Transform:
   m_ObjectHideFlags: 0
@@ -6348,9 +6348,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148232848}
-        m_MethodName: OpenFileBrowser
-        m_Mode: 6
+      - m_Target: {fileID: 1222089120}
+        m_MethodName: LoadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1222089120}
+        m_MethodName: DeactivateGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -10,7 +10,7 @@ using TbsFramework.Players;
 using TbsFramework.Units;
 using TbsFramework.Grid.UnitGenerators;
 using TbsFramework.Test.Scripts;
-
+using TMPro;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -27,8 +27,8 @@ public class ManagerScript : MonoBehaviour
     public MouseScript user;
     public Slider rotSlider;
     public GameObject rotUI;
-    public InputField levelNameSave;
-    public InputField levelNameLoad;
+    public TMP_InputField levelNameSave;
+    public TMP_InputField levelNameLoad;
     private bool itemPositionIn = true;
     private bool optionPositionIn = true;
     private bool saveLoadPositionIn = false;
