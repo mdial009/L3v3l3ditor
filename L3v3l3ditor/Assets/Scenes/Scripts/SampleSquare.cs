@@ -27,7 +27,7 @@ namespace TbsFramework.Test
         public override void MarkAsPath()
         {
             //SetColor(squareRenderer, Color.green);
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<Renderer>().material.color = Color.blue;
         }
 
         public override void MarkAsReachable()
@@ -40,7 +40,7 @@ namespace TbsFramework.Test
         {
             //SetColor(squareRenderer, Color.white);
             //SetColor(outlineRenderer, Color.black);
-            GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<Renderer>().material.color = Color.green;
         }
         
 

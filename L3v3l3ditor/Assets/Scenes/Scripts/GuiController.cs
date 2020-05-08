@@ -14,14 +14,13 @@ namespace TbsFramework.Test
     {
         public CellGrid CellGrid;
         public Button NextTurnButton;
-
         public Image UnitImage;
         public Text InfoText;
         public Text StatsText;
 
         void Awake()
         {
-            UnitImage.color = Color.gray;
+            UnitImage.color = Color.green;
 
             CellGrid.GameStarted += OnGameStarted;
             CellGrid.TurnEnded += OnTurnEnded;
@@ -52,12 +51,12 @@ namespace TbsFramework.Test
         }
         private void OnCellDehighlighted(object sender, EventArgs e)
         {
-            UnitImage.color = Color.gray;
+            UnitImage.color = Color.green;
             StatsText.text = "";
         }
         private void OnCellHighlighted(object sender, EventArgs e)
         {
-            UnitImage.color = Color.gray;
+            UnitImage.color = Color.green;
             StatsText.text = "Movement Cost: " + (sender as Cell).MovementCost;
         }
         private void OnUnitAttacked(object sender, AttackEventArgs e)
@@ -72,7 +71,7 @@ namespace TbsFramework.Test
         private void OnUnitDehighlighted(object sender, EventArgs e)
         {
             StatsText.text = "";
-            UnitImage.color = Color.gray;
+            UnitImage.color = Color.green;
         }
         private void OnUnitHighlighted(object sender, EventArgs e)
         {
