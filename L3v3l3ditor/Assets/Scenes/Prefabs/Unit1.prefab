@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3773515985098599893}
   - component: {fileID: -8359735542962218523}
   - component: {fileID: -5949621762595950262}
-  - component: {fileID: -3194474667055183327}
-  - component: {fileID: 3502278018798806027}
+  - component: {fileID: 3907506873562166454}
   m_Layer: 0
   m_Name: Unit1
   m_TagString: Untagged
@@ -53,7 +52,7 @@ MonoBehaviour:
   AttackFactor: 5
   DefenceFactor: 1
   movementPoints: 5
-  MovementAnimationSpeed: 1900
+  MovementAnimationSpeed: 10
   actionPoints: 1
   PlayerNumber: 0
   UnitName: 
@@ -105,8 +104,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-3194474667055183327
-MeshCollider:
+--- !u!65 &3907506873562166454
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,26 +114,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 445581dbfbbea06408d552fa1aca77fc, type: 3}
---- !u!95 &3502278018798806027
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4739124366561820560}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 445581dbfbbea06408d552fa1aca77fc, type: 3}
-  m_Controller: {fileID: 9100000, guid: d05c65343761305459dd4f72d1f51309, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
