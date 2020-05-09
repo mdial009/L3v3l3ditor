@@ -11,7 +11,7 @@ public class Dimensions : MonoBehaviour
 
     public static int players = 1;
 
-    List<string> names = new List<string>() { "1", "2"};
+    List<string> names = new List<string>() { "1", "2","3","4","5","6","7","8","9","10","11"};
 
 
     public Dropdown dropdown;
@@ -21,8 +21,6 @@ public class Dimensions : MonoBehaviour
     {
         PopulateList();
     }
-
-
 
     void PopulateList()
     {
@@ -46,12 +44,5 @@ public class Dimensions : MonoBehaviour
     {
         Debug.Log("Players -> " + (dropDown.value + 1));
         players = dropDown.value + 1;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
