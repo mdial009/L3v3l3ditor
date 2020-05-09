@@ -143,7 +143,7 @@ namespace TbsFramework.Test.Scripts
             //cameraObject.tag = "MainCamera";
             camera = cameraObject.GetComponent<Camera>();
             camera.transform.position = new Vector3(gridInfo.Center.x, gridInfo.Center.y + (3.5f * Dimensions.rows), gridInfo.Center.z);
-
+            
             //camera.transform.position -= new Vector3(0, 0, (gridInfo.Dimensions.x > gridInfo.Dimensions.z ? gridInfo.Dimensions.x : gridInfo.Dimensions.z) * Mathf.Sqrt(3) / 2);
 
 
@@ -155,6 +155,11 @@ namespace TbsFramework.Test.Scripts
 
             camera.transform.parent = null;
             camera.transform.SetAsFirstSibling();
+
+            EditorObject eoc = cameraObject.AddComponent<EditorObject>();
+            eoc.data.pos = cameraObject.transform.position;
+            eoc.data.rot = cameraObject.transform.rotation;
+            eoc.data.objectType = EditorObject.ObjectType.Camera;
 
 
             //guiController = new GameObject("GUIController");

@@ -39,6 +39,7 @@ public class ManagerScript : MonoBehaviour
     GameObject cellGrid;
     GameObject players;
     GameObject units;
+    Camera mCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -210,7 +211,10 @@ public class ManagerScript : MonoBehaviour
         players = new GameObject("Players");
         units = GameObject.Find("Units");
         cellGrid = GameObject.Find("CellGrid");
-
+        mCamera = Camera.main;
+        var cameraObject = new GameObject("Main Camera");
+        cameraObject.tag = "MainCamera";
+        mCamera = cameraObject.AddComponent<Camera>();
 
         cellGrid.GetComponent<CellGrid>().PlayersParent = players.transform;
 
@@ -310,6 +314,18 @@ public class ManagerScript : MonoBehaviour
                 eo.data.rot = LoadLevelss.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Cell;
                 
+            }
+            else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Camera)
+            {
+
+                mCamera.transform.position = level.editorObjects[i].pos; // set position from data in level
+                mCamera.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                mCamera.fieldOfView = 35.3f;
+
+                EditorObject eo = cameraObject.AddComponent<EditorObject>();
+                eo.data.pos = cameraObject.transform.position;
+                eo.data.rot = cameraObject.transform.rotation;
+                eo.data.objectType = EditorObject.ObjectType.Camera;
             }
 
         }
