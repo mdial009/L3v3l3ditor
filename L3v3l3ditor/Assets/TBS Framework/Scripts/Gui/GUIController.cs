@@ -73,7 +73,7 @@ namespace TbsFramework.Gui
         {
             
 
-            InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1) + ("Turn");
+            InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1) + (" Turn");
         }
 
 
