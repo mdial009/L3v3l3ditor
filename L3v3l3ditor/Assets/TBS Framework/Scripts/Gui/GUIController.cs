@@ -61,7 +61,7 @@ namespace TbsFramework.Gui
                 cell.GetComponent<Cell>().CellDehighlighted += OnCellDehighlighted;
             }
 
-            //OnTurnEnded(sender, e);
+            OnTurnEnded(sender, e);
         }
 
         private void OnGameEnded(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace TbsFramework.Gui
         {
             
 
-            InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1);
+            InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1) + ("Turn");
         }
 
 
@@ -155,7 +155,8 @@ namespace TbsFramework.Gui
             {
                 
                 CellGrid.EndTurn();//User ends his turn by pressing "n" on keyboard.
-                
+                //InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1);
+
 
             }
         }
