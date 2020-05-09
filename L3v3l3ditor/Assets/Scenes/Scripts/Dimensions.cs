@@ -9,7 +9,7 @@ public class Dimensions : MonoBehaviour
     public static int rows = 1;
     public static int cols = 1;
 
-    public static int players = 1;
+    public static int players = 2;
 
     List<string> names = new List<string>() { "1", "2","3","4","5","6","7","8","9","10","11"};
 
@@ -40,9 +40,9 @@ public class Dimensions : MonoBehaviour
         cols = dropDown.value + 1;
     }
 
-    public void OnDropDownChangedPlayers(Dropdown dropDown)
+   /* public void OnDropDownChangedPlayers(Dropdown dropDown)
     {
         Debug.Log("Players -> " + (dropDown.value + 1));
         players = dropDown.value + 1;
-    }
+    }*/
 }

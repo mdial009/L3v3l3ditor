@@ -17,7 +17,7 @@ namespace TbsFramework.Gui
         public Image UnitImage;
         public Text InfoText;
         public Text StatsText;
-        public Button NextTurnButton;
+        
 
         GameObject guiController;
 
@@ -46,17 +46,17 @@ namespace TbsFramework.Gui
             CellGrid.LevelLoadingDone += onLevelLoadingDone;*/
 
             CellGrid.GameStarted += OnGameStarted;
-            CellGrid.TurnEnded += OnTurnEnded;
+            //CellGrid.TurnEnded += OnTurnEnded;
             CellGrid.GameEnded += OnGameEnded;
             CellGrid.UnitAdded += OnUnitAdded;
         }
 
         private void OnGameStarted(object sender, EventArgs e)
         {
-            Debug.Log("On");
+            
 ;            foreach (Transform cell in CellGrid.transform)
             {
-                Debug.Log("On1");
+                
                 cell.GetComponent<Cell>().CellHighlighted += OnCellHighlighted;
                 cell.GetComponent<Cell>().CellDehighlighted += OnCellDehighlighted;
             }
@@ -71,7 +71,7 @@ namespace TbsFramework.Gui
         
         private void OnTurnEnded(object sender, EventArgs e)
         {
-            NextTurnButton.interactable = ((sender as CellGrid).CurrentPlayer is HumanPlayer);
+            
 
             InfoText.text = "Player " + ((sender as CellGrid).CurrentPlayerNumber + 1);
         }
