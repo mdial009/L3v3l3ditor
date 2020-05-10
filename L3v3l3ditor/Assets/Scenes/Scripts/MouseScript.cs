@@ -182,7 +182,7 @@ public class MouseScript : MonoBehaviour
         newUnit.transform.SetParent(units.transform);
         //newUnit.transform.parent = units.transform;
         newUnit.transform.localPosition += offset;
-        newUnit.transform.rotation = selectedCell.transform.rotation;
+        newUnit.transform.Rotate(0,0,180);
 
         EditorObject eo = newUnit.AddComponent<EditorObject>();
         eo.data.pos = newUnit.transform.position;
@@ -232,7 +232,7 @@ public class MouseScript : MonoBehaviour
         newUnit.transform.SetParent(units.transform);
         //newUnit.transform.parent = units.transform;
         newUnit.transform.localPosition += offset;
-        newUnit.transform.rotation = selectedCell.transform.rotation;
+        newUnit.transform.Rotate(0,0,180);
 
         EditorObject eo = newUnit.AddComponent<EditorObject>();
         eo.data.pos = newUnit.transform.position;
