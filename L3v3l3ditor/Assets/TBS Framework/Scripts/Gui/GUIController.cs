@@ -17,7 +17,11 @@ namespace TbsFramework.Gui
         public Image UnitImage;
         public Text InfoText;
         public Text StatsText;
-        
+
+        AudioSource source;
+        public AudioClip impact;
+
+
 
         GameObject guiController;
 
@@ -41,6 +45,7 @@ namespace TbsFramework.Gui
 
         public void Begin()
         {
+            
             Debug.Log("GUI Start");
             /*CellGrid.LevelLoading += onLevelLoading;
             CellGrid.LevelLoadingDone += onLevelLoadingDone;*/
@@ -116,12 +121,15 @@ namespace TbsFramework.Gui
 
         private void OnUnitAttacked(object sender, AttackEventArgs e)
         {
+            
             if (!(CellGrid.CurrentPlayer is HumanPlayer)) return;
             OnUnitDehighlighted(sender, new EventArgs());
 
             if ((sender as Unit).HitPoints <= 0) return;
 
             OnUnitHighlighted(sender, e);
+            source = GetComponent<AudioSource>();
+            source.PlayOneShot(impact, 0.7f);
         }
 
         private void OnUnitAdded(object sender, UnitCreatedEventArgs e)
