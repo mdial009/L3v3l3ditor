@@ -89,7 +89,7 @@ public class ManagerScript : MonoBehaviour
     public void ChooseP2_Unit()
     {
         Debug.Log("P2Unit Selected");
-        user.itemOption = MouseScript.ItemList.Unit2;
+        user.itemOption = MouseScript.ItemList.Unit;
         //int index = 1;
         //GameObject unit = Instantiate(itemsToPickFrom[index]);
         whichObj = 1;
@@ -98,7 +98,7 @@ public class ManagerScript : MonoBehaviour
     public void ChooseObstacles()
     {
         Debug.Log("Obstacle Selected");
-        user.itemOption = MouseScript.ItemList.Obstacle;
+        user.itemOption = MouseScript.ItemList.Unit;
         //int index = 2;
         //GameObject unit = Instantiate(itemsToPickFrom[index]);
         whichObj = 2;
@@ -116,6 +116,7 @@ public class ManagerScript : MonoBehaviour
 
     public void ChooseDestroy()
     {
+        Debug.Log("here2");
         user.manipulateOption = MouseScript.LevelManipulation.Destroy; // set mode to destroy
         user.mr.enabled = false; // hide mouse mesh
         //rotUI.SetActive(false); // disable rotation ui

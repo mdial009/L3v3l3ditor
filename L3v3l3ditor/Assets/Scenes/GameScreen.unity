@@ -3918,7 +3918,7 @@ MonoBehaviour:
   itemsToPickFrom:
   - {fileID: 4739124366561820560, guid: f063da22cbcb9954090dc276395461ed, type: 3}
   - {fileID: 3162193240832907527, guid: f70323730487e3d4f8aa7cc161ac092d, type: 3}
-  - {fileID: 1413923296579134, guid: 2c718e89bbd4bcf40b322da4f4bf33f8, type: 3}
+  - {fileID: 8230128684806462110, guid: 4cb1d50fa5fff2a41a1df6892781e9a0, type: 3}
   - {fileID: 6193566407713006884, guid: ab4047f8a5c232545a72ff9afdfd2c58, type: 3}
   playerPlaced: 0
   itemUIAnimation: {fileID: 944477921}
@@ -4639,7 +4639,7 @@ MonoBehaviour:
   itemsToPickFrom:
   - {fileID: 4739124366561820560, guid: f063da22cbcb9954090dc276395461ed, type: 3}
   - {fileID: 3162193240832907527, guid: f70323730487e3d4f8aa7cc161ac092d, type: 3}
-  - {fileID: 1413923296579134, guid: 2c718e89bbd4bcf40b322da4f4bf33f8, type: 3}
+  - {fileID: 8230128684806462110, guid: 4cb1d50fa5fff2a41a1df6892781e9a0, type: 3}
   goodPlace: {fileID: 2100000, guid: d6b14c82244676148b8548fd0a948a84, type: 2}
   badPlace: {fileID: 2100000, guid: d23d325ccee52ee4baa8642d5de52bfc, type: 2}
   Player: {fileID: 6193566407713006884, guid: ab4047f8a5c232545a72ff9afdfd2c58, type: 3}

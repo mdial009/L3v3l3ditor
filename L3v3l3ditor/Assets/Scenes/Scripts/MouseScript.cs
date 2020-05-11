@@ -15,7 +15,7 @@ public class MouseScript : MonoBehaviour
     [HideInInspector] // we hide these to make them known to the rest of the project without them appearing in the Unity editor.
     public ItemList itemOption = ItemList.Unit;
     [HideInInspector]
-    public LevelManipulation manipulateOption;// = LevelManipulation.Create; // create is the default manipulation type.
+    public LevelManipulation manipulateOption = LevelManipulation.Create; // create is the default manipulation type.
     [HideInInspector]
     public MeshRenderer mr;
     [HideInInspector]
@@ -79,25 +79,26 @@ public class MouseScript : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject()) // check if mouse over UI object.
             {
                 if (colliding == false && manipulateOption == LevelManipulation.Create) // create an object if not colliding with anything.
+                {
                     //CreateObject();
                     if (ManagerScript.whichObj == 0)
                     {
                         CreateP1_Units();
                     }
-                if (ManagerScript.whichObj == 1)
-                {
-                    CreateP2_Units();
+                    if (ManagerScript.whichObj == 1)
+                    {
+                        CreateP2_Units();
+                    }
+                    else if (ManagerScript.whichObj == 2)
+                    {
+                        CreateObstacles();
+                    }
                 }
-                else if (ManagerScript.whichObj == 2)
-                {
-                    CreateObstacles();
-                }
-
                 else if (colliding == true && manipulateOption == LevelManipulation.Rotate) // Select object under mouse to be rotated.
                     SetRotateObject();
                 else if (colliding == true && manipulateOption == LevelManipulation.Destroy) // select object under mouse to be destroyed.
                 {
-
+                    Debug.Log("here2");
                     if (hit.collider.gameObject.name.Contains("PlayerModel")) // if player object, set ms.playerPlaced to false indicating no player object in level.
                         ms.playerPlaced = false;
 
