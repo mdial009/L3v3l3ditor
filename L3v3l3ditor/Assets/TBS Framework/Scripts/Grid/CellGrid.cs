@@ -193,7 +193,8 @@ namespace TbsFramework.Grid
         {
             Units.Remove(sender as Unit);
             var totalPlayersAlive = Units.Select(u => u.PlayerNumber).Distinct().ToList(); //Checking if the game is over
-            if (totalPlayersAlive.Count == 1)
+            Debug.Log(totalPlayersAlive.Count);
+            if (totalPlayersAlive.Count == 2)
             {
                 if (GameEnded != null)
                     GameEnded.Invoke(this, new EventArgs());

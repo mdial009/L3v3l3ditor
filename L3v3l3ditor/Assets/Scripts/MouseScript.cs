@@ -245,40 +245,87 @@ public class MouseScript : MonoBehaviour
 
 
         Debug.Log("Creating Obstacles");
-
-        Cell selectedCell = GetSelectedCell();
+        var selectedCell = GetSelectedCell();
         if (selectedCell == null)
         {
             return;
         }
-  
+
 
         if (selectedCell.IsTaken)
         {
             return;
         }
+
         EditorObject c = selectedCell.GetComponent<EditorObject>();
         c.data.isTaken = true;
-
         selectedCell.IsTaken = true;
         int Index = 2;
-        GameObject obs = Instantiate(itemsToPickFrom[Index]);
-        obs.layer = 9;
+        GameObject newUnit = Instantiate(itemsToPickFrom[Index]);
+        newUnit.layer = 9;
+        newUnit.GetComponent<Unit>().PlayerNumber = Index;
+        newUnit.GetComponent<Unit>().Cell = selectedCell;
+        units = GameObject.Find("Units");
+
 
 
         var offset = new Vector3(0, 1, 0);
-        obs.transform.position = selectedCell.transform.position;
-        //obs.transform.SetParent(cellGrid.transform);
-        //newUnit.transform.parent = units.transform;
-        obs.transform.localPosition += offset;
-        obs.transform.rotation = selectedCell.transform.rotation;
+        newUnit.transform.position = selectedCell.transform.position;
+        newUnit.transform.SetParent(units.transform);
+        newUnit.transform.parent = units.transform;
+        newUnit.transform.localPosition += offset;
+        //newUnit.transform.Rotate(0, 0, 180);
 
-        EditorObject eo = obs.AddComponent<EditorObject>();
-        eo.data.pos = obs.transform.position;
-        eo.data.rot = obs.transform.rotation;
+        EditorObject eo = newUnit.AddComponent<EditorObject>();
+        eo.data.pos = newUnit.transform.position;
+        eo.data.rot = newUnit.transform.rotation;
         eo.data.objectType = EditorObject.ObjectType.Obstacle;
+        
+        Debug.Log("Added Unit to Save");
 
-      
 
     }
+
+
+    public void CreateObstacles1()
+{
+
+
+    Debug.Log("Creating Obstacles");
+
+    Cell selectedCell = GetSelectedCell();
+    if (selectedCell == null)
+    {
+        return;
+    }
+
+
+    if (selectedCell.IsTaken)
+    {
+        return;
+    }
+    EditorObject c = selectedCell.GetComponent<EditorObject>();
+    c.data.isTaken = true;
+
+    selectedCell.IsTaken = true;
+    int Index = 2;
+    GameObject obs = Instantiate(itemsToPickFrom[Index]);
+    obs.layer = 9;
+
+
+    var offset = new Vector3(0, 1, 0);
+    obs.transform.position = selectedCell.transform.position;
+    //obs.transform.SetParent(cellGrid.transform);
+    //newUnit.transform.parent = units.transform;
+    obs.transform.localPosition += offset;
+    obs.transform.rotation = selectedCell.transform.rotation;
+
+    EditorObject eo = obs.AddComponent<EditorObject>();
+    eo.data.pos = obs.transform.position;
+    eo.data.rot = obs.transform.rotation;
+    eo.data.objectType = EditorObject.ObjectType.Obstacle;
+
+
+
+}
 }

@@ -277,7 +277,7 @@ public class ManagerScript : MonoBehaviour
                 eo.data.objectType = EditorObject.ObjectType.Unit2;
             }
 
-            else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Obstacle)
+            /*else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Obstacle)
             {
                 LoadLevels = Instantiate(itemsToPickFrom[2]);
                 LoadLevels.transform.position = level.editorObjects[i].pos; // set position from data in level
@@ -289,6 +289,25 @@ public class ManagerScript : MonoBehaviour
                 eo.data.pos = LoadLevels.transform.position;
                 eo.data.rot = LoadLevels.transform.rotation;
                 eo.data.objectType = EditorObject.ObjectType.Obstacle;
+            }*/
+
+            else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Obstacle)
+            {
+                LoadLevels = Instantiate(itemsToPickFrom[2]);
+                LoadLevels.transform.position = level.editorObjects[i].pos; // set position from data in level
+                LoadLevels.transform.rotation = level.editorObjects[i].rot; // set rotation from data in level.
+                LoadLevels.layer = 9; // assign to SpawnedObjects layer.
+
+                LoadLevels.GetComponent<Unit>().PlayerNumber = 2;
+                units = GameObject.Find("Units");
+
+                LoadLevels.transform.SetParent(units.transform);
+
+                //Add editor object component and feed data.
+                EditorObject eo = LoadLevels.AddComponent<EditorObject>();
+                eo.data.pos = LoadLevels.transform.position;
+                eo.data.rot = LoadLevels.transform.rotation;
+                eo.data.objectType = EditorObject.ObjectType.Unit2;
             }
 
             else if (level.editorObjects[i].objectType == EditorObject.ObjectType.Cell)
