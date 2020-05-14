@@ -18,12 +18,4 @@ public class MainMenu : MonoBehaviour
         Instantiate(loading);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    /*public void QuitApplication(){
-        Debug.Log ("You have quit the game");
-        if (UnityEditor.EditorApplication.isPlaying == true) {
-        UnityEditor.EditorApplication.isPlaying = false;
-        } else {
-        Application.Quit ();
-        }
-    } */
 }
