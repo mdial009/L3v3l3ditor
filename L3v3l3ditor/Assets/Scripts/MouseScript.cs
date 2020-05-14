@@ -94,8 +94,6 @@ public class MouseScript : MonoBehaviour
                         CreateObstacles();
                     }
                 }
-                else if (colliding == true && manipulateOption == LevelManipulation.Rotate) // Select object under mouse to be rotated.
-                    SetRotateObject();
                 else if (colliding == true && manipulateOption == LevelManipulation.Destroy) // select object under mouse to be destroyed.
                 {
                     Debug.Log("here2");
@@ -282,14 +280,5 @@ public class MouseScript : MonoBehaviour
 
       
 
-    }
-
-    /// <summary>
-    /// Object rotation
-    /// </summary>
-    void SetRotateObject()
-    {
-        rotObject = hit.collider.gameObject; // object to be rotated
-        ms.rotSlider.value = rotObject.transform.rotation.y; // set slider to current object's rotation.
     }
 }

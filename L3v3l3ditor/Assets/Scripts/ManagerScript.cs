@@ -25,13 +25,11 @@ public class ManagerScript : MonoBehaviour
     public Animator loadUIAnimation;
     public MeshFilter mouseObject;
     public MouseScript user;
-    public Slider rotSlider;
     public GameObject rotUI;
     public TMP_InputField levelNameSave;
     public TMP_InputField levelNameLoad;
     private bool itemPositionIn = true;
     private bool optionPositionIn = true;
-    private bool saveLoadPositionIn = false;
     private LevelEditor level;
     public static int whichObj = 0;
     GameObject guiController;
