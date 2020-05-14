@@ -3409,7 +3409,7 @@ GameObject:
   - component: {fileID: 555183173}
   - component: {fileID: 555183172}
   m_Layer: 0
-  m_Name: Menu button select
+  m_Name: MenuButtonSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
