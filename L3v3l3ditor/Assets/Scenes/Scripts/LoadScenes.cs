@@ -21,12 +21,4 @@ public class LoadScenes : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
-    public void GoToGame()
-    {
-        SceneManager.LoadScene(4);
-    }
-    public void GoToTest2()
-    {
-        SceneManager.LoadScene(7);
-    }
 }
