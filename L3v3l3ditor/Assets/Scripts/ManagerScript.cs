@@ -84,6 +84,15 @@ public class ManagerScript : MonoBehaviour
         whichObj = 0;
     }
 
+    public void ChooseP1_Archer()
+    {
+        Debug.Log("P1Archer Selected");
+        user.itemOption = MouseScript.ItemList.Unit;
+        //int index = 0;
+        //GameObject unit = Instantiate(itemsToPickFrom[index]);
+        whichObj = 3;
+    }
+
     public void ChooseP2_Unit()
     {
         Debug.Log("P2Unit Selected");

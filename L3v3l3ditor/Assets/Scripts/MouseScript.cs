@@ -89,10 +89,15 @@ public class MouseScript : MonoBehaviour
                     {
                         CreateP2_Units();
                     }
-                    else if (ManagerScript.whichObj == 2)
+                    if (ManagerScript.whichObj == 2)
                     {
                         CreateObstacles();
                     }
+                    if (ManagerScript.whichObj == 3)
+                    {
+                        CreateP1_Archer();
+                    }
+
                 }
                 else if (colliding == true && manipulateOption == LevelManipulation.Destroy) // select object under mouse to be destroyed.
                 {
@@ -192,6 +197,53 @@ public class MouseScript : MonoBehaviour
 
 
   
+    }
+
+    public void CreateP1_Archer()
+    {
+
+
+        Debug.Log("Creating Archers");
+        var selectedCell = GetSelectedCell();
+        if (selectedCell == null)
+        {
+            return;
+        }
+
+
+        if (selectedCell.IsTaken)
+        {
+            return;
+        }
+
+        EditorObject c = selectedCell.GetComponent<EditorObject>();
+        c.data.isTaken = true;
+        selectedCell.IsTaken = true;
+        int Index = 3;
+        GameObject newUnit = Instantiate(itemsToPickFrom[Index]);
+        newUnit.layer = 9;
+        newUnit.GetComponent<Unit>().PlayerNumber = Index - 3;
+        newUnit.GetComponent<Unit>().Cell = selectedCell;
+        units = GameObject.Find("Units");
+
+
+
+        var offset = new Vector3(0, 1, 0);
+        newUnit.transform.position = selectedCell.transform.position;
+        newUnit.transform.SetParent(units.transform);
+        //newUnit.transform.parent = units.transform;
+        newUnit.transform.localPosition += offset;
+        newUnit.transform.Rotate(0, 0, 180);
+
+        EditorObject eo = newUnit.AddComponent<EditorObject>();
+        eo.data.pos = newUnit.transform.position;
+        eo.data.rot = newUnit.transform.rotation;
+        eo.data.objectType = EditorObject.ObjectType.Unit;
+        Debug.Log(eo.data.pos);
+        Debug.Log("Added Unit to Save");
+
+
+
     }
 
     public void CreateP2_Units()
